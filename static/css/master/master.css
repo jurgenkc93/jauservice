@@ -1,0 +1,126 @@
+@font-face{
+	font-family: "LakersTextured";
+	src: url("LakersTextured.otf") format("opentype");
+}
+div{
+	word-wrap: break-word;
+}
+.times-font{
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: lighter;
+	font-style: normal;
+}
+.jauservice-text{
+	font-family: 'LakersTextured';
+	font-weight: bold;
+	font-style: normal;
+}
+
+.background-white{
+	background-color: white;
+}
+.color-white{
+	color: white;
+}
+
+.background-blue{
+	background-color: rgba(102, 153, 255, 0.8);
+}
+.color-blue{
+	color: rgba(102, 153, 255, 1);
+}
+.color-blue-text{
+	color: rgb(85, 129, 216);
+}
+.map{
+	height: 300px;
+	width: 100%;
+}
+.home-background{
+	width: 100%;
+	height: 800px;
+	background-image: url("http://localhost/jauservice/static/img/home/background.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+  }
+
+.h-80{
+	height: 80%;
+}
+.h-100{
+	height: 100%;
+}
+
+.w-80{
+	width: 70%;
+}
+
+.w-100{
+	width: 100%;
+}
+
+.scale-15{
+	transform: scaleX(2.7) scaleY(2.7);
+}
+
+.sticky {
+	position: fixed;
+}
+
+.top-0{
+	top: 0;
+}
+
+.container-user{
+	border: 3px;
+	border-radius: 20px;
+	background-color: rgba(102, 153, 255, 0.6);
+	border-color: rgba(102, 153, 255, 1);
+}
+
+.container-user-2{
+	background-color: rgb(255, 255, 255);
+	border:20px solid rgba(102, 153, 255, 0.6);
+	border-radius: 20px;
+	border-width:20px;
+	border-style:solid;
+	border-color:rgba(102, 153, 255, 0.6);
+}
+
+nav{
+	position: fixed;
+	width: 100%;
+}
+
+footer{
+	width: 100%;
+	position: static;
+	background-color:grey;
+}
+.hover-pointer:hover{
+	cursor: pointer;
+}
+.all-th-curved{
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+.borderless-top{
+	border-top: none !important;
+}
+
+.border-botton{
+	border-bottom: 1px solid grey;
+}
+
+.left-th-curved{
+	border-top-left-radius: 10px;
+}
+.right-th-curved{
+	border-top-right-radius: 10px;
+}
