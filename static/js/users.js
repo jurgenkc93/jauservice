@@ -1,10 +1,10 @@
 $(document).ready(function(){
     
-
+/*
     $.ajax({
 		contentType: 'application/json; charset=utf-8',
         dataType: 'json',
-		url: "http:///api.kecomer.com.mx/index.php/Users/getAll",
+		url: "http://api.kecomer.com.mx/index.php/Users/getAll",
         type: "get",	
         success: function(data) {
 
@@ -36,12 +36,15 @@ $(document).ready(function(){
           console.log( "Editar" );
           console.log( $(this).val() );
       });
-
+*/
     
 });
 
+/*
 var url = "http://localhost/kecomer-interfaz/index.php/user/";
-//var url = "http://interfaz.kecomer.com.mx/index.php/user/";
+var url = "http://interfaz.kecomer.com.mx/index.php/user/";
+*/
+var url = 'http://www.jauservice.coms/index.php/';
 
 function createUser(){
     url = url+"create";

@@ -10,9 +10,9 @@ $(document).ready(function(){
 
 	/*
     var url = 'http://10.0.0.2/jauservice/index.php/';
-	var url = 'http://jauservice.kecomer.com.mx/index.php/';
+	var url = 'http://localhost/jauservice/index.php/';
     */
-   var url = 'http://localhost/jauservice/index.php/';
+   var url = 'http://www.jauservice.coms/index.php/';
 	
 	$('#sign').click(function(){
 
