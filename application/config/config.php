@@ -22,10 +22,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | If you need to allow multiple domains, remember that this file is still
 | a PHP script and you can easily do that on your own.
 |
-*/
-#$config['base_url'] = 'http://10.0.0.2/jauservice/';
+$config['base_url'] = 'http://10.0.0.2/jauservice/';
 $config['base_url'] = 'http://localhost/jauservice/';
-#$config['base_url'] = 'http://jauservice.kecomer.com.mx/';
+*/
+$config['base_url'] = 'http://wwwjauservice.com/';
 
 /*
 |--------------------------------------------------------------------------
