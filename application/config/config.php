@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://10.0.0.2/jauservice/';
 $config['base_url'] = 'http://localhost/jauservice/';
 */
-$config['base_url'] = 'http://wwwjauservice.com/';
+$config['base_url'] = 'http://www.jauservice.com/';
 
 /*
 |--------------------------------------------------------------------------
