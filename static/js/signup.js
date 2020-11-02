@@ -12,7 +12,7 @@ $(document).ready(function(){
     var url = 'http://10.0.0.2/jauservice/index.php/';
 	var url = 'http://localhost/jauservice/index.php/';
     */
-   var url = 'http://www.jauservice.com/index.php/';
+   var url = 'https://www.jauservice.com/index.php/';
 	
 	$('#sign').click(function(){
 
@@ -80,26 +80,34 @@ $(document).ready(function(){
 										});
 										*/
 										$.confirm({
-											title: 'Bienvenido '+ data.name +'!',
-											content: 'Ya puedes empezar a utilizar Jauservice <a href="'+url+'welcome/user">Iniciar Sesión</a>',
+											title: data.title,
+											content: data.body,
 											buttons: {
 												login: {
 													text : 'Iniciar Sesión',
 													btnClass : 'btn-primary',
 													action : function(){
-														window.location.href = url+"welcome/user";
+														window.location.href = data.action;
 													}
+												},
+												cancel: {
+													text: 'Cerrar',
+													btnClass : 'btn-secondary'
 												}
 											} 
 										});
 									},
 									error: function(xhr) {
 										$('#phone-warning').show();
-
+										
+										alert("Error");
+										console.log(xhr);
+										
 										$.alert({
-											title: '¿Ya tienes cuenta?',
+											title: 'Ha ocurrido un error, por favor notifique al personal',
 											content: 'Por favor <a href="'+url+'welcome/user">Iniciar Sesión</a>'
 										});
+										
 
 									}
 								});

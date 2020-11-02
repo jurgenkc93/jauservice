@@ -45,23 +45,36 @@ class Users extends CI_Controller {
 			
 			$this->load->library('encryption');
 			
-			$encrytptedPass = $this->encryption->encrypt($data->imia);
-
-			$user = array(
-				"email"=>$data->paroi,
-				"username"=>$data->paroi,
-				"password"=>$encrytptedPass,
-				"name"=>$data->prozvisca,
-				"surname"=>$data->karystainika,
-				"id_role"=>3
-			);
+			$encrytptedPass = $this->encryption->encrypt($data->password);
 			
-			$this->User_Model->insertUser($user);
-			echo json_encode($user);
+			$user = $this->User_Model->findByPhone($data->phone);
+
+			if($user == null){
+				$newUser = array(
+					"phone"=>$data->phone,
+					"password"=>$encrytptedPass,
+					"name"=>$data->name,
+					"surname"=>$data->surname,
+					"id_role"=>3
+				);
+				try{
+					$this->User_Model->insertUser($newUser);
+				}catch(Exception $e){
+					$response['error'] = $e;
+					//echo json_encode($e);
+				}
+				$response['title'] = "Bienvenido ".$newUser['name']." por favor ";
+				$response['body'] = 'Ya puedes empezar a utilizar Jauservice <a href="'.base_url().'"index.php/welcome/user">Iniciar Sesión</a>';
+				$response['action'] = base_url().'index.php/welcome/user';
+				echo json_encode($response);
+			}else{
+				$response['title'] = "Cuenta existente!";
+				$response['body'] = 'Usted ya tiene una cuenta pruebe <a href="'.base_url().'"index.php/welcome/user">iniciando Sesión</a>';
+				echo json_encode($response);
+			}
 		}else{
 			echo json_encode('Ora no empujen!');
 		}
-		
 	}
 	
 	public function editAbout(){
@@ -87,17 +100,25 @@ class Users extends CI_Controller {
 		if(file_get_contents('php://input')){
 			$json = file_get_contents('php://input');
 			$data = json_decode($json);
-			$phone = $this->User_Model->findPhone($data->phone);
 
-			$description = str_replace("<br />", "", $data->description);
-
-			$this->Category_Model->editCategoryById($data->id, $description);
-			$user = $this->Category_Model->findUserCategoryById($data->id);
-
-			
-			if($user){
-				$response['title'] = "Hecho!";
-				$response['body'] = "Su descripción ha sido correctamente guardada!";
+			if($this->User_Model->findByPhone($data->phone)){
+				$user = $this->User_Model->findByPhone($data->phone);
+				$category = $this->Category_Model->findUserCategoryById($data->id);
+				if($user['id'] == $category['id_user']){
+					$description = str_replace("<br />", "", $data->description);
+					$this->Category_Model->editCategoryById($data->id, $description);
+					
+					$response['title'] = "Hecho!";
+					$response['body'] = "Su descripción ha sido correctamente guardada!";
+					echo json_encode($response);
+				}else{
+					$response['title'] = "Error!";
+					$response['body'] = "Parece que usted no es el propietario de este conocimimento!";
+					echo json_encode($response);
+				}
+			}else{
+				$response['title'] = "Error!";
+				$response['body'] = "¿Ya probaste creando una cuenta?";
 				echo json_encode($response);
 			}
 			

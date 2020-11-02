@@ -14,7 +14,7 @@
             <br>
             <div class="row">
                 <div class="col-md-6">
-                    <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['email']; ?>.jpg" height="250" width="250">
+                    <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="250" width="250">
                 </div>
                 <div class="col-md-6 jumbotron my-3">
                     <h5 class="times-font color-blue-text">Acerda de mi:</h5>

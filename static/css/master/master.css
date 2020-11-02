@@ -107,8 +107,8 @@ footer{
 	cursor: pointer;
 }
 .all-th-curved{
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 }
 .borderless-top{
 	border-top: none !important;
@@ -123,4 +123,8 @@ footer{
 }
 .right-th-curved{
 	border-top-right-radius: 10px;
+}
+
+.border-table-dates-botton{
+	border-bottom: 1px solid rgb(255, 255, 255);
 }

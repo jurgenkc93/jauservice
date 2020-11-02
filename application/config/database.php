@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'www.kecomer.com.mx',
-	'username' => 'kecomerc_talacha',
-	'password' => 'kecomerc_talacha',
-	'database' => 'kecomerc_talachas',
+	'hostname' => 'jauservice.com',
+	'username' => 'u598368954_main',
+	'password' => 'Illidan.1945',
+	'database' => 'u598368954_main',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

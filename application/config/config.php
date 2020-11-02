@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('America/Mexico_City'); 
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['base_url'] = 'http://10.0.0.2/jauservice/';
 $config['base_url'] = 'http://localhost/jauservice/';
 */
-$config['base_url'] = 'http://www.jauservice.com/';
+$config['base_url'] = 'https://www.jauservice.com/';
 
 /*
 |--------------------------------------------------------------------------

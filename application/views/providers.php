@@ -33,7 +33,7 @@
                         <table class="table table-borderless jumbotron">
                             <tbody>
                                 <tr>
-                                    <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['email']; ?>.jpg" height="200"></th>
+                                    <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="200"></th>
                                     <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
                                     <td><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star " style="color: yellow;"></i><i class="far fa-star " style="color: yellow;"></i></td>
                                 </tr>

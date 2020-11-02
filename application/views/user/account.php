@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 jumbotron">
-            <h3>Bienvenido <?php echo $_SESSION['name']; ?></h3>
+            <h3>Bienvenido <?php echo $_SESSION['name']; ?> <?php echo $_SESSION['surname']; ?></h3>
             <br>
             <br>
             <?php if($_SESSION['rol'] == 4){
@@ -18,25 +18,17 @@
                 </a>
                 <br>
                 <br>
-                <a href="<?php echo base_url(); ?>index.php/restaurants/categories" class="btn btn-dark w-100">
-                    <i class="fas fa-boxes"></i> Categorias
-                </a>
-                <br>
-                <br>
             <?php
             } 
             if($_SESSION['rol'] == 3){
                 ?>
-                <a href="<?php echo base_url(); ?>index.php/user/dates" class="btn btn-primary w-100">
-                    <i class="far fa-calendar-alt"></i> Citas
-                </a>
-                <br>
-                <br>
+                <!--
                 <a href="<?php echo base_url(); ?>index.php/user/personal" class="btn btn-info w-100">
                     <i class="fas fa-user-tag"></i> Cambiar información de personal
                 </a>
                 <br>
                 <br>
+                -->
                 <?php
             }
             ?>

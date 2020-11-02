@@ -11,6 +11,7 @@
             <br>
 			<h5>Servicios disponibles:</h5>
 			<br>
+			<br>
 			<table class="table">
 				<tbody>
 					<?php
@@ -39,7 +40,5 @@ tr:hover{
 	cursor: pointer;
 }
 </style>
-
-
 
 <script src="<?php echo base_url();?>static/js/service.js" type="text/javascript"></script>

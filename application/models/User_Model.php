@@ -18,23 +18,6 @@ class User_Model extends CI_Model  {
         }
     }
 
-    public function findEmail($email){
-        $this->db->select('email');
-        $this->db->from('user');
-        $this->db->where('email', $email);
-
-        $query = $this->db->get();
-        
-        $response = $query->result_array();
-    
-        if ($response > 0){
-            return $response;
-        }
-        else {
-            return NULL;
-        }
-    }
-
     public function findPhone($phone){
         $this->db->select('phone');
         $this->db->from('user');
@@ -78,7 +61,7 @@ class User_Model extends CI_Model  {
         
         $response = $query->result_array();
     
-        if ($response > 0){
+        if (!empty($response)){
             return $response[0];
         }
         else {
@@ -103,6 +86,22 @@ class User_Model extends CI_Model  {
     }
 
     public function findById($id){
+        $this->db->select('phone, name, surname, username, id_role, longitude, latitude, workshop, address_1, telephone');
+        $this->db->from('user');
+        $this->db->where("id", $id);
+        $query = $this->db->get();
+
+        $response = $query->result_array();
+
+        if ($response > 0){
+            return $response[0];
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    public function findUserById($id){
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where("id", $id);
@@ -142,6 +141,20 @@ class User_Model extends CI_Model  {
     public function updatePassword($phone, $password){
         $this->db->set('password', $password);
         $this->db->where('phone', $phone);
+        $this->db->update('user');
+    }
+
+    public function activateRecoverPassword($id, $time, $number){
+        $this->db->set('number', $number);
+        $this->db->set('recovery', $time);
+        $this->db->where('id', $id);
+        $this->db->update('user');
+    }
+
+    public function deactivateRecoverPassword($id){
+        $this->db->set('number', 0);
+        $this->db->set('recovery', null);
+        $this->db->where('id', $id);
         $this->db->update('user');
     }
 
@@ -213,7 +226,7 @@ class User_Model extends CI_Model  {
     }
     
     public function findServiceProviders($category){
-        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.email, user.description');
+        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description');
         $this->db->from('user_category');
 
         
@@ -238,7 +251,7 @@ class User_Model extends CI_Model  {
     }
 
     public function findNearServiceProviders($longitude, $latitude, $category){
-        $this->db->select('user.name, user.username, user.surname, user.status, user.latitude, user.longitude, user.workshop, user.address_1, user.email, user.description');
+        $this->db->select('user.name, user.username, user.surname, user.status, user.latitude, user.longitude, user.workshop, user.address_1, user.phone, user.description');
         $this->db->from('user_category');
 
         

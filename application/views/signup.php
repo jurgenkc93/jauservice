@@ -16,7 +16,7 @@
 			<div class="col-md-3">
 			</div>
 			<div class="col-md-6">
-				<img alt="" class="center" src="<?php echo base_url();?>static/img/logo_web.png" height="150px">
+			<img alt="" src="<?php echo base_url();?>static/img/logo.png" class="img-circle center" width="200">
 				<h2>Bienvenido</h2>
 				<br>
 				<p class="form-text text-muted" id="phone-warning">Parece que ya tienes cuenta <a href="<?php echo base_url();?>index.php/welcome/user">Iniciar Sesión</a></p>

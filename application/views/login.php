@@ -31,7 +31,11 @@
 						<input class="btn btn-primary background-blue w-100 w-100" type="submit" name="Subir" id="login" value="Iniciar Sesión"/>
 					</div>
 					<br>
-					¿Eres Nuevo? <a href="<?php echo base_url();?>index.php/Welcome/newUser" class="color-blue">Crear Cuenta</a>
+					<a href="<?php echo base_url();?>index.php/welcome/forgot" class="color-blue">¿Olvidaste tu contraseña?</a>
+					<br>
+					<br>
+					¿Eres Nuevo? 
+					<a href="<?php echo base_url();?>index.php/welcome/newuser"> <button type="button" class="btn btn-success w-100" id="find-phone">Crear cuenta</button> </a>
 				</form>
 			</div>
 			<div class="col-md-3">

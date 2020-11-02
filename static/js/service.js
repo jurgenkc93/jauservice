@@ -1,7 +1,7 @@
 /*
 var url = 'http://localhost/jauservice/';
 */
-var url = 'http://www.jauservice.com/index.php/';
+var url = 'https://www.jauservice.com/';
 
 function findCategory(id){
 	$(location).attr("href", url+'index.php/service/providers/'+id);
