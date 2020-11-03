@@ -40,13 +40,11 @@ $(document).ready(function(){
     });
      
     $('.fa-eye').click(function(){
-        var id = this.id;
-        id = id.replace('eye-', '');
-        var input = $('#'+id);
+        var input = $('#password');
         if(input.attr('type') === 'password'){
-            $('#'+id).attr('type', 'text');
+            $('#password').attr('type', 'text');
         }else{
-            $('#'+id).attr('type', 'password');
+            $('#password').attr('type', 'password');
         }
     });
     
