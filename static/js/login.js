@@ -12,10 +12,7 @@ $(document).ready(function(){
 
 
    $('#find-phone').click(function(){
-    
     var inputPhone = $('#phone').val();
-
-
         $.ajax({
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -41,8 +38,17 @@ $(document).ready(function(){
             }
         });
     });
-        
-
+     
+    $('.fa-eye').click(function(){
+        var id = this.id;
+        id = id.replace('eye-', '');
+        var input = $('#'+id);
+        if(input.attr('type') === 'password'){
+            $('#'+id).attr('type', 'text');
+        }else{
+            $('#'+id).attr('type', 'password');
+        }
+    });
     
 });
 

@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'jauservice.com',
 	'username' => 'u598368954_main',
-	'password' => 'Illidan.1945',
+	'password' => '@RH>#0=DXO&RGScFLk4&#R',
 	'database' => 'u598368954_main',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

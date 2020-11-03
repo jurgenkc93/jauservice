@@ -20,9 +20,12 @@
 						<small class="form-text text-muted" id="phone-warning">El teléfono no coincide o no está registrado :(</small>
 					</div>
 
-					<div id="password-div">
-						<p>Contraseña</p>
+					<div class="input-group" id="password-div">
 						<input type="password" class="form-control" name="password" id="password" size="50" maxlength="50" placeholder="Contraseña..."/>
+						<span class="input-group-addon mx-2 my-3 far fa-eye fa-lg" id="eye-password">
+						</span>
+						<div class="input-group">
+						</div>
 					</div>
 					<br>
 
