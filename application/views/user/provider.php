@@ -32,6 +32,7 @@
             <a href="<?php echo base_url();?>index.php/service/provider/<?php echo $provider['username']; ?>" id="request-appointment" class="btn btn-dark w-100"><i class="far fa-calendar-alt"></i>  Ver mi perfil</a>
             
             <br>
+            <!--
             <div class="jumbotron">
                 <h3><i class="fas fa-plus"></i>   Agregar nueva categoría</h3>
                 <hr>
@@ -54,6 +55,8 @@
                     <button class="btn btn-primary w-100 mt-3" id="add-category"><i class="fas fa-plus-circle"></i> Agregar</button>
                 </div>
             </div>
+            -->
+            
             
             <br>
             <br>

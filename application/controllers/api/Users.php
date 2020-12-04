@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Users extends CI_Controller {
 
 	public function __construct(){
@@ -19,6 +18,33 @@ class Users extends CI_Controller {
         $data = $this->User_Model->findPhone($phone);
         echo json_encode($data);
 	}
+
+	public function getAllProviders(){
+		if(file_get_contents('php://input')){
+			$json = file_get_contents('php://input');
+
+			// Converts it into a PHP object
+			$data = json_decode($json);
+
+			if(isset($data->phone)){
+				$user = $this->User_Model->findByPhone($data->phone);
+				if($user['id_role'] == 2 || $user['id_role'] == 1){
+					//$data = $this->User_Model->findAllProviders();
+					$data = $this->User_Model->findAllProvidersByGeneral($user['id']);
+					echo json_encode($data);
+				}else{
+					echo json_encode("Permisos no suficientes para realizas está acción");
+				}
+			}else{
+				echo json_encode("¿Te conozco?");
+			}
+		}else{
+			echo json_encode("Falta info");
+			
+		}
+
+	}
+
 	public function getEmail($email, $domain){
         $data = $this->User_Model->findEmail($email . "@" . $domain);
         echo json_encode($data);
@@ -88,8 +114,6 @@ class Users extends CI_Controller {
 			
 			$response['title'] = "Hecho!";
 			$response['body'] = "Su descripción ha sido correctamente guardada!";
-			/*
-			*/
 			echo json_encode($response);
 		}else{
 			echo json_encode('¿Me da usted permiso?');
@@ -136,7 +160,8 @@ class Users extends CI_Controller {
 
 			if($id != NULL){
 				$category = $this->Category_Model->findCategoryExistanceByUserId($id['id'], $data->id);
-
+				echo json_encode($data);
+				/*
 				if($category != NULL){
 					//$category = $this->Category_Model->findCategoryExistanceByUserId($obj['id_user'], $obj['id_category']);
 					$response['title'] = 'Categoría existente';
@@ -152,11 +177,6 @@ class Users extends CI_Controller {
 					$response['body'] = '';
 					
 					echo json_encode($response);
-				}
-				/*
-				if($category != NULL){
-				}else{
-					echo json_encode($category);
 				}
 				*/
 			}

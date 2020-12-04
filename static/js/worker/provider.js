@@ -12,8 +12,8 @@ $(document).ready(function(){
 
         var data = {
             "id" : $('#select-category').val(),
-            "phone" : $('#phone').val(),
-            "description" : $('#description-new').val()
+            "phone" : $('#phone-provider').val(),
+            "description" : $('#new-category-descripton').val()
             };
         var jsonData = JSON.stringify(data);
         
@@ -46,11 +46,12 @@ $(document).ready(function(){
 	$('#about').click(function(){
 
         var data = {
-            "phone" : $('#phone').val(),
+            "phone" : $('#phone-provider').val(),
             "description" : $('#description').val()
             };
         var jsonData = JSON.stringify(data);
-        
+        console.log("data");
+        console.log(data);
         $.ajax({
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -79,7 +80,7 @@ $(document).ready(function(){
         
         var data = {
             "id" : id,
-            "phone" : $('#phone').val(),
+            "phone" : $('#phone-provider').val(),
             "description" : $('#category-descripton-'+id).val()
             };
 
@@ -115,7 +116,7 @@ $(document).ready(function(){
         var id = this.id;
         var data = {
             "id" : id,
-            "phone" : $('#phone').val()
+            "phone" : $('#phone-provider').val()
             };
 
             var jsonData = JSON.stringify(data);

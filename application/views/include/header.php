@@ -50,6 +50,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url();?>index.php/user">Cuenta</a>
                 </li>
+                <?php if($_SESSION['rol'] == 2){
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url();?>index.php/worker">Proveedores</a>
+                    </li>
+                <?php }
+                ?>
             <?php 
                 }
                 ?>

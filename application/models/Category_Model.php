@@ -15,8 +15,12 @@ class Category_Model extends CI_Model  {
         $this->db->where('keycode', $keycode);
         $query = $this->db->get();
 
-        $response = $query->result()[0];
-        return $response;
+        if (!empty($response)){
+            return $response[0];
+        }
+        else {
+            return NULL;
+        }
     }
 
     public function findUserCategoryById($id){
@@ -25,8 +29,13 @@ class Category_Model extends CI_Model  {
         $this->db->where('id', $id);
         $query = $this->db->get();
 
-        $response = $query->result()[0];
-        return $response;
+        $response = $query->result_array();
+        if (!empty($response)){
+            return $response[0];
+        }
+        else {
+            return NULL;
+        }
     }
 
     public function createUserCategory($user_category){

@@ -13,7 +13,7 @@ class User extends CI_Controller {
 	public function index(){
 		if(isset($_SESSION['phone'])){
             $this->load->view('include/header');
-            $this->load->view('user/account' );
+            $this->load->view('user/account');
             $this->load->view('include/footer');
         }else{
             redirect('welcome/login');
@@ -28,13 +28,6 @@ class User extends CI_Controller {
             $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
             $data['categories'] = $this->Category_Model->findAll();
             $data['provider'] = $provider;
-            /*
-            header("Access-Control-Allow-Headers: *");
-            header('Access-Control-Allow-Origin: *');
-            header("Access-Control-Allow-Methods: GET");
-            header('Content-Type: application/json');
-            echo json_encode($data);
-            */
             $this->load->view('include/header');
             $this->load->view('user/provider', $data);
             $this->load->view('include/footer');

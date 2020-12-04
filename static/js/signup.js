@@ -25,7 +25,7 @@ $(document).ready(function(){
 		//var phoneno = /^\d{10}$/;
 		var size = phone.length;
 
-		if (size == 10){
+		if(size == 10){
 			
 			$('#phone-warning-match').hide();
 
@@ -152,7 +152,7 @@ $(document).ready(function(){
 					scrollTop: $("#name").offset().top
 				}, 'slow');
 			}
-		} else{
+		}else{
 			console.log("no");
 			$('#phone-warning-match').show();
 			$.alert({

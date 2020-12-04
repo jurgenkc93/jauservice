@@ -72,13 +72,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
+/*
+'hostname' => 'jauservice.com',
+'username' => 'u598368954_main',
+'password' => '@RH>#0=DXO&RGScFLk4&#R',
+'database' => 'u598368954_main',
+*/
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'jauservice.com',
-	'username' => 'u598368954_main',
-	'password' => '@RH>#0=DXO&RGScFLk4&#R',
-	'database' => 'u598368954_main',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'jauservice',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

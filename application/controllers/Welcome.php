@@ -68,10 +68,13 @@ class Welcome extends CI_Controller {
 	public function login(){
 		$this->load->library('encryption');
 
-		if($_POST['phone'] == '' || $_POST['password'] == ''){
-			redirect('welcome/user');
-		}
-		else{
+		if(!isset($_POST['phone'])){
+			$data['message'] = "Faltaron datos";
+			$this->load->view('include/header');
+			$this->load->view('messages/warning-message', $data);
+			$this->load->view('login');
+			$this->load->view('include/footer');
+		}else{
 			if(isset($_SESSION['try'])){
 				if($_SESSION['try'] >= 3){
 
@@ -151,7 +154,6 @@ class Welcome extends CI_Controller {
 			}
 
 		}
-
 	}
 
 	private function doLogin($phone, $password){
@@ -173,7 +175,7 @@ class Welcome extends CI_Controller {
 	}
 
 	public function logout() {
-		if(isset($_SESSION['phone'])){
+		//if(isset($_SESSION['phone'])){
 			$user_data = $this->session->all_userdata();
 			foreach ($user_data as $key => $value) {
 				if ($key != 'session_id' && $key != 'ip_address' && $key != 'user_agent' && $key != 'last_activity') {
@@ -182,10 +184,10 @@ class Welcome extends CI_Controller {
 			}
 			$this->session->sess_destroy();
 			redirect(base_url().'index.php');
-		}else{
+		/*}else{
 			redirect('welcome/user');
 			
-		}
+		}*/
 	}
 
 	public function doLogout() {
@@ -322,6 +324,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('account');
 		$this->load->view('include/footer');
 	}
+
+	public function My404(){
+        $this->output->set_status_header('404');
+        $this->load->view('include/header');
+        $this->load->view('404');
+        $this->load->view('include/footer');
+    }
 
 }
 

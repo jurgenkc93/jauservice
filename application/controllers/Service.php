@@ -33,14 +33,6 @@ class Service extends CI_Controller {
 		$this->load->view('include/header');
 		$this->load->view('all', $data);
 		$this->load->view('include/footer');
-		
-		/*
-        header("Access-Control-Allow-Headers: *");
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET");
-        header('Content-Type: application/json');
-		echo json_encode($data);
-		*/
 	}
 
 	public function providers($category){
@@ -50,15 +42,8 @@ class Service extends CI_Controller {
 		$this->load->view('include/header');
 		$this->load->view('providers', $data);
 		$this->load->view('include/footer');
-		
-		/*
-        header("Access-Control-Allow-Headers: *");
-        header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: GET");
-        header('Content-Type: application/json');
-		echo json_encode($data);
-		*/
 	}
+	
 	/*
 	public function providers($category){
 		$data['category'] = $this->Category_Model->findByKeycode($category);

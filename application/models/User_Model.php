@@ -85,6 +85,39 @@ class User_Model extends CI_Model  {
         }
     }
 
+    public function findAllProviders(){
+        $this->db->select('phone, name, surname, date_started, next_renew, status,');
+        $this->db->from('user');
+        $this->db->where("id_role", 4);
+        $query = $this->db->get();
+
+        $response = $query->result_array();
+
+        if (!empty($response)){
+            return $response;
+        }
+        else {
+            return NULL;
+        }
+    }
+
+    public function findAllProvidersByGeneral($id){
+        $this->db->select('phone, name, surname, date_started, next_renew, status,');
+        $this->db->from('user');
+        $this->db->where("id_role", 4);
+        $this->db->where("user_of", $id);
+        $query = $this->db->get();
+
+        $response = $query->result_array();
+
+        if (!empty($response)){
+            return $response;
+        }
+        else {
+            return NULL;
+        }
+    }
+
     public function findById($id){
         $this->db->select('phone, name, surname, username, id_role, longitude, latitude, workshop, address_1, telephone');
         $this->db->from('user');
@@ -136,6 +169,10 @@ class User_Model extends CI_Model  {
     public function insertUser($user){
         $this->db->set($user);
         $this->db->insert("user", $user);
+    }
+
+    public function updateUser($user){
+        $this->db->replace("user", $user);
     }
 
     public function updatePassword($phone, $password){

@@ -17,7 +17,7 @@
 					<div class="form-group" id="phone-div">
 						<label>Número telefónico</label>
 						<input type="text" name="phone" class="form-control" id="phone" placeholder="272 123 4567">
-						<small class="form-text text-muted" id="phone-warning">El teléfono no coincide o no está registrado :(</small>
+						<small class="form-text text-muted" id="phone-warning">El teléfono no coincide</small>
 					</div>
 
 					<div class="input-group" id="password-div">

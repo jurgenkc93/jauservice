@@ -8,6 +8,16 @@
         </div>
         <br>
         <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Mision</h1>
+                    <p>Brindar una plataforma donde las personas puedan explotar sus conocimientos y su individualidad </p>
+                </div>
+                <div class="col-md-6">
+                    <h1>Visión</h1>
+                    <p>Brindar una plataforma donde las personas puedan explotar sus conocimientos y darse a conocer de manera individual </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
