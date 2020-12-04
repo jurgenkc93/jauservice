@@ -14,7 +14,7 @@ class Category_Model extends CI_Model  {
         $this->db->from('category');
         $this->db->where('keycode', $keycode);
         $query = $this->db->get();
-
+        $response = $query->result_array();
         if (!empty($response)){
             return $response[0];
         }

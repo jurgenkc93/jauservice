@@ -18,11 +18,10 @@
     
         <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/logo.png" width="250" height="150">
         <img alt="" class="center rounded w-100" src="<?php echo base_url();?>static/img/home/pleca.png" height="100">
-        <i class="<?php echo $category->image; ?> fa-2x color-white"></i>
-        <br>
         <?php if($category){
             ?>
-			<h1 class=""><?php echo $category->name; ?></h1>
+            <i class="<?php echo $category['image']; ?> fa-2x"></i>
+			<h1 class=""><?php echo $category['name']; ?></h1>
             <br>
             <div class="row">
             <?php if($providers){
