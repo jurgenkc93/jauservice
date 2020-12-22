@@ -192,6 +192,8 @@ class Provider extends CI_Controller {
         }
 	}
 
+
+
 	public function picture($phone){
 		if(isset($_SESSION['phone'])){
 			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
@@ -206,6 +208,21 @@ class Provider extends CI_Controller {
             redirect('welcome/login');
         }
 	}
+/*
+	public function works($phone){
+		if(isset($_SESSION['phone'])){
+			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
+				$data['phone'] = $phone;
+				$this->load->view('include/header');
+				$this->load->view('worker/picture', $data);
+				$this->load->view('include/footer');
+			}else{
+				redirect('welcome/login');
+			}
+        }else{
+            redirect('welcome/login');
+        }
+	}*/
 
 	public function uploadProviderPicture(){
 		$this->load->helper("file");

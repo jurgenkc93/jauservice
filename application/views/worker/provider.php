@@ -28,6 +28,9 @@
             </div>
         </div>
 
+        <a href="<?php echo base_url();?>index.php/provider/works/<?php echo $provider['phone']; ?>" id="request-appointment" class="btn btn-info w-100"> <i class="fas fa-arrow-circle-left"></i> <i class="fas fa-users"></i>  Volver a mis proveedores</a>
+        <br>
+        <br>
         <a href="<?php echo base_url();?>index.php/service/provider/<?php echo $provider['username']; ?>" id="request-appointment" class="btn btn-dark w-100"><i class="far fa-calendar-alt"></i>  Ver perfil</a>
         
         <br>
