@@ -5,6 +5,8 @@
     <br>
     <?php if($provider){
         ?>
+        <a href="<?php echo base_url();?>index.php/provider/list" id="request-appointment" class="btn btn-info w-100"> <i class="fas fa-arrow-circle-left"></i> <i class="fas fa-users"></i>  Volver a mis proveedores</a>
+        <br>
 
         <input type="hidden" id="phone-provider" value="<?php echo $provider['phone']; ?>">
         <div class="row">
@@ -15,8 +17,8 @@
         
         <div class="row">
             <div class="col-md-6">
-                <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="250" width="250">
-                <a class="btn btn-success w-100" href="#"><i class="far fa-image"></i> Cambiar imagen</a>
+                <img alt="" class="center rounded" src="<?php echo base_url(); ?>users/<?php echo $provider['phone']; ?>/profile/profile-picture.jpg" height="250" width="250">
+                <a class="btn btn-success w-100" href="<?php echo base_url(); ?>index.php/provider/picture/<?php echo $provider['phone']; ?>"><i class="far fa-image"></i> Cambiar imagen</a>
             </div>
             <div class="col-md-6 jumbotron my-3">
                 <h5 class="times-font">Acerda de mi:</h5>
@@ -26,7 +28,7 @@
             </div>
         </div>
 
-        <a href="<?php echo base_url();?>index.php/service/provider/<?php echo $provider['username']; ?>" id="request-appointment" class="btn btn-dark w-100"><i class="far fa-calendar-alt"></i>  Ver mi perfil</a>
+        <a href="<?php echo base_url();?>index.php/service/provider/<?php echo $provider['username']; ?>" id="request-appointment" class="btn btn-dark w-100"><i class="far fa-calendar-alt"></i>  Ver perfil</a>
         
         <br>
         

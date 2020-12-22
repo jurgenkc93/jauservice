@@ -13,7 +13,7 @@ class Welcome extends CI_Controller {
 		//if(!isset($_SESSION['phone']) || $_SESSION['rol'] != 4){
 			$data['roles'] = $this->User_Model->findAllServices();
 			$this->load->view('include/header');
-			$this->load->view('nhome', $data);
+			$this->load->view('home2', $data);
 			$this->load->view('include/footer');
 		/*
 		}else{
@@ -49,11 +49,50 @@ class Welcome extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
+	public function contactUs(){
+		if($_POST['name'] != '' && $_POST['email'] != '' && $_POST['telephone'] != '' && $_POST['subject'] != '' && $_POST['body'] != ''){
+			$this->load->library('email');
+
+			
+			$this->email->from('correo@jauservice.com', $_POST['name']);
+			$this->email->to('comercial@jauservice.com');
+			$this->email->cc('jurgen@jauservice.com');
+
+			$this->email->subject($_POST['subject']);
+			$message = $_POST['name'];
+			$message .= "\r\n";
+			$message .= $_POST['telephone'];
+			$message .= "\r\n";
+			$message .= $_POST['email'];
+			$message .= "\r\n";
+			$message .= $_POST['body'];
+
+			$this->email->message($message);
+
+			$this->email->send();
+			$data['message'] = "Su correo ha sido enviado, gracias por contactarnos";
+
+			$this->load->view('include/header');
+			$this->load->view('messages/primary-message', $data);
+			$this->load->view('contact');
+			$this->load->view('include/footer');
+
+		}else{
+			redirect('welcome/contact');
+		}
+	}
+
 	public function test(){
 		$this->load->view('testing');
 	}
 	
 	public function privacy(){
+		$this->load->view('include/header');
+		$this->load->view('privacy');
+		$this->load->view('include/footer');
+	}
+	
+	public function privacyTerms(){
 		$this->load->view('include/header');
 		$this->load->view('privacy');
 		$this->load->view('include/footer');
@@ -71,7 +110,7 @@ class Welcome extends CI_Controller {
 		if(!isset($_POST['phone'])){
 			$data['message'] = "Faltaron datos";
 			$this->load->view('include/header');
-			$this->load->view('messages/warning-message', $data);
+			$this->load->view('messages/danger-message', $data);
 			$this->load->view('login');
 			$this->load->view('include/footer');
 		}else{
@@ -94,7 +133,7 @@ class Welcome extends CI_Controller {
 						}else{
 							$data['message'] = "Su cuenta encuentra bloqueada, vuelva a intentarlo mas tarde por favor";
 							$this->load->view('include/header');
-							$this->load->view('messages/warning-message', $data);
+							$this->load->view('messages/danger-message', $data);
 							$this->load->view('user/user_lock');
 							$this->load->view('include/footer');
 						}
@@ -104,7 +143,7 @@ class Welcome extends CI_Controller {
 						
 						$data['message'] = "Su cuenta encuentra bloqueada, vuelva a intentarlo mas tarde por favor";
 						$this->load->view('include/header');
-						$this->load->view('messages/warning-message', $data);
+						$this->load->view('messages/danger-message', $data);
 						$this->load->view('login');
 						$this->load->view('include/footer');
 					}
@@ -198,6 +237,12 @@ class Welcome extends CI_Controller {
 	public function forgot(){
 		$this->load->view('include/header');
 		$this->load->view('forgot');
+		$this->load->view('include/footer');
+	}
+
+	public function trusted(){
+		$this->load->view('include/header');
+		$this->load->view('trusted_people');
 		$this->load->view('include/footer');
 	}
 
@@ -300,7 +345,18 @@ class Welcome extends CI_Controller {
 		}
 	}
 	
-	
+	public function services(){
+		$data['roles'] = $this->User_Model->findAllServices();
+		$this->load->view('include/header');
+		$this->load->view('services', $data);
+		$this->load->view('include/footer');
+	}
+
+	public function provider(){
+		$this->load->view('include/header');
+		$this->load->view('provider');
+		$this->load->view('include/footer');
+	}
 
 	public function session(){
 		header('Content-Type: application/json');

@@ -3,14 +3,7 @@
 	<div class="container">
 		<?php if($roles){
 			?>
-            <h1 class="color-blue jauservice-text" style="">Bienvenido a Jauservice</h1>
-            <br>
-			<img alt="" class="center" src="<?php echo base_url();?>static/img/logo.png" width="250" height="150">
-            <br>
-            <h1 class="color-blue jauservice-text" style="text-align: center;">Bienvenido a Jauservice, soluciones a tu hogar y tu vida</h1>
-            <br>
-            <br>
-			<h5>Servicios disponibles:</h5>
+			<h5>Servicios disponibles en la ciudad de Orizba, Ver.</h5>
 			<br>
 			<br>
 			<table class="table">

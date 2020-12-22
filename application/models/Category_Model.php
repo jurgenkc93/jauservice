@@ -96,6 +96,29 @@ class Category_Model extends CI_Model  {
         }
     }
 
+    public function findServicesByPhoneForGeneral($phone){
+        $this->db->select('category.name, user_category.id, category.image, category.keycode, user_category.description, user_category.status');
+        $this->db->from('user_category');
+        
+        $this->db->join('user', 'user.id = user_category.id_user');
+        $this->db->join('category', 'category.id = user_category.id_category');
+        
+        $this->db->where("user.id_role", 4);
+        $this->db->where("user.phone", $phone);
+        $this->db->order_by("category.name", "ASC");
+
+        $query = $this->db->get();
+
+        $response = $query->result_array();
+
+        if ($response > 0){
+            return $response;
+        }
+        else {
+            return NULL;
+        }
+    }
+
     public function editCategoryById($id, $description){
         $this->db->set('description', nl2br($description));
         $this->db->where('id', $id);

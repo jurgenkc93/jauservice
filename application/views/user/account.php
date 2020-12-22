@@ -1,10 +1,5 @@
-<link rel="stylesheet" href="<?php echo base_url();?>static/css/switch.css">
-<script src="<?php echo base_url();?>static/js/account.js" type="text/javascript"></script>
-
 <br>
 <br>
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-12 jumbotron">

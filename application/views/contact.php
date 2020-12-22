@@ -1,6 +1,4 @@
-<script src="<?php echo base_url();?>static/js/contact.js" type="text/javascript"></script>
-
-<section class="wrapper">
+<!--<script src="<?php echo base_url();?>static/js/contact.js" type="text/javascript"></script>-->
 
 <div>
   
@@ -11,34 +9,25 @@
       <div class="row">
         <div class="col-md-6 jumbotron">
           <small id="emailHelp" class="form-text text-muted"></small>
-          <form class="" action="index.html" method="post">
+          <form class="" action="<?php echo base_url();?>index.php/welcome/contactUs" method="post">
             <div class="form-group">
-              <input type="text" class="form-control" id="name" placeholder="Nombre..." maxlength="50">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nombre..." maxlength="50" required>
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email...">
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Email..."  required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="telephone" placeholder="Teléfono...     Ej: XXX-XXX-XXXX">
+              <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Teléfono...     Ej: XXX-XXX-XXXX"  required>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" id="subject" placeholder="Asunto...">
+              <input type="text" class="form-control" id="subject" name="subject" placeholder="Asunto..."  required>
             </div>
             <div class="form-group">
-              <textarea name="name" rows="8" cols="80" class="form-control" maxlength="500" id="body"></textarea>
+              <textarea rows="8" cols="80" class="form-control" maxlength="500" id="body" name="body" required></textarea>
               <small class="kecomer-text">Maximo 500 caracteres.</small>
             </div>
-            <button type="button" name="button" class="btn btn-primary" id="sendEmail">Enviar correo</button>
+            <input type="submit" name="button" class="btn btn-primary" id="sendEmail" value="Enviar correo">
           </form>
-          <div id="loading">
-            <p>Cargando</p>
-          </div>
-          <div id="send">
-            <p>Mensaje enviado</p>
-          </div>
-          <div id="miss">
-            <p>Existen campos faltantes</p>
-          </div>
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
@@ -74,6 +63,3 @@
 	
 	</div>
 </div>
-
-
-</section>

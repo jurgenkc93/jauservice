@@ -4,15 +4,13 @@
     <br>
     <br>
     <br>
-        
-
         <?php if($dates_as_user){
             ?>
             <table class="table table-borderless">
                 <thead>
-                        <tr>
-                            <th class="background-blue all-th-curved" colspan="2">Citas proximas</th>
-                        </tr>
+                    <tr>
+                        <th class="background-blue all-th-curved" colspan="2">Citas proximas</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php foreach($dates_as_user AS $date){
@@ -42,7 +40,9 @@
     <?php 
 }else{
     ?>
-    <h1>No hay citas aun</h1>
+    <div class="container">
+        <h1>No hay citas aun</h1>
+    </div>
     <?php
 }
 ?>

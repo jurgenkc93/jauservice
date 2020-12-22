@@ -7,7 +7,6 @@ $(document).ready(function(){
    var url = 'https://www.jauservice.com/index.php/';
     
     $('.request-appointment').click(function(){
-
         var id = this.id;
         var phone = $('#phone').val();
 
@@ -23,10 +22,9 @@ $(document).ready(function(){
                     '</form>',
                     buttons: {
                         accept: {
-                        text : 'Sí, ocultar',
+                        text : 'Sí, contactar',
                         btnClass : 'btn-primary',
                         action : function(){
-    
                             var data = {
                                 "phone" : phone,
                                 "provider" : id,
@@ -58,7 +56,7 @@ $(document).ready(function(){
                                     
                                     $.alert({
                                         title: '¡Algo salió mal!',
-                                        content: 'Por favor intente de nuevo o mas tarde.'
+                                        content: 'Por favor intente de nuevo o mas tarde, si persiste contacte al soporte.'
                                     });
                     
                                 }
@@ -66,7 +64,7 @@ $(document).ready(function(){
                         }
                     },
                     deny: {
-                        text : 'No',
+                        text : 'Cancelar',
                         btnClass : 'btn-primary',
                         action : function(){
                             //window.location.href = url+"welcome/user";

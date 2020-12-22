@@ -12,9 +12,25 @@ class User extends CI_Controller {
 
 	public function index(){
 		if(isset($_SESSION['phone'])){
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $past_appointments = $this->Appointment_Model->findUserPastDates($user['id']);
             $this->load->view('include/header');
+            if($past_appointments != null){
+                $index = 0;
+                foreach($past_appointments AS $appointment){
+                    if($this->Appointment_Model->findUserComentProvider($user['id'], $appointment['id_provider'])){
+                        unset($past_appointments[$index]);
+                    }
+                    $index++;
+                }
+                if(!empty($past_appointments)){
+                    $message['message'] = '<a href="'.base_url().'index.php/user/providers">Usted tiene '.count($past_appointments).' comentario(s) sobre los servicios prestados.</a>';
+                    $this->load->view('messages/dark-message', $message);
+                }
+            }
             $this->load->view('user/account');
             $this->load->view('include/footer');
+
         }else{
             redirect('welcome/login');
         }
@@ -24,7 +40,6 @@ class User extends CI_Controller {
 	public function provider(){
 		if(isset($_SESSION['phone'])){
             $provider = $this->User_Model->findByPhone($_SESSION['phone']);
-
             $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
             $data['categories'] = $this->Category_Model->findAll();
             $data['provider'] = $provider;
@@ -41,9 +56,7 @@ class User extends CI_Controller {
             $user = $this->User_Model->findByPhone($_SESSION['phone']);
             if($_SESSION['rol'] == 4){
                 $data['pending_dates_as_provider'] = $this->Appointment_Model->findProviderPendingDates($user['id']);
-                
                 $days = $this->Appointment_Model->findDays($user['id']);
-                
                 $data['today'] = $today = date('Y-m-d', time());
                 
                 foreach($days AS $index=>$day){
@@ -108,7 +121,7 @@ class User extends CI_Controller {
                 $this->load->view('include/footer');
                 /*
                 */
-            }elseif($_SESSION['rol'] == 3){
+            }else{
                 $data['dates_as_user'] = $this->Appointment_Model->findUserDates($user['id']);
                 
                 $this->load->view('include/header');

@@ -26,6 +26,10 @@ div{
 .background-blue{
 	background-color: rgba(102, 153, 255, 0.8);
 }
+.background-black{
+	background-color: rgb(0, 0, 0);
+}
+
 .color-blue{
 	color: rgba(102, 153, 255, 1);
 }

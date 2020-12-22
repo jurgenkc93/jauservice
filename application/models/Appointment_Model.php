@@ -107,15 +107,53 @@ class Appointment_Model extends CI_Model  {
     }
 
     public function findUserDates($id_user){
-        $this->db->select('appointments.id, appointments.date, appointments.time, appointments.description, appointments.date, appointments.time, user.name, user.surname, user.username');
+        $this->db->select('appointments.id, appointments.date, appointments.time, appointments.description, user.name, user.surname, user.username');
         $this->db->from('appointments');
         $this->db->join('user', 'user.id = appointments.id_provider');
-        $this->db->where('id_user', $id_user);
+        $this->db->where('date >=', $this->dateToday());
+        $this->db->where('appointments.id_user', $id_user);
         $this->db->where('id_status', 2);
         $this->db->order_by('appointments.date', 'ASC');
         $query = $this->db->get();
         //$query = $this->db->get('appointments', 30);
-    
+        
+        $response = $query->result_array();
+        if(!empty($response)){
+            return $response;
+        }else{
+            return NULL;
+        }
+        
+    }
+
+    public function findUserPastDates($id_user){
+        $this->db->select('*');
+        $this->db->from('appointments');
+        $this->db->where('date <=', $this->dateToday());
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_status', 3);
+        $this->db->group_by('id_provider');
+        $this->db->order_by('date', 'ASC');
+        $query = $this->db->get();
+        
+        $response = $query->result_array();
+        if (!empty($response)){
+            return $response;
+        }
+        else {
+            return NULL;
+        }
+        
+    }
+
+    public function findUserComments($id_user, $id_provider){
+        $this->db->select('*');
+        $this->db->from('appointments');
+        $this->db->where('date <=', $this->dateToday());
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_user', $id_provider);
+        $query = $this->db->get();
+        
         $response = $query->result_array();
         if (!empty($response)){
             return $response;
@@ -179,7 +217,7 @@ class Appointment_Model extends CI_Model  {
         $this->db->where('id_status', 2);
         $this->db->order_by('date', 'ASC');
         $query = $this->db->get();
-    
+        
         $response = $query->result_array();
         if (!empty($response)){
             return $response;
@@ -189,13 +227,28 @@ class Appointment_Model extends CI_Model  {
         }
         
     }
-
+    
     public function date2Appointment($id, $date, $time){
         $this->db->set('date', $date);
         $this->db->set('time', $time);
         $this->db->set('id_status', 2);
         $this->db->where('id', $id);
         $this->db->update('appointments');
+    }
+    
+    public function findUserComentProvider($user, $provider){
+        $this->db->select('*');
+        $this->db->from('appointment_comments');
+        $this->db->where('id_user', $user);
+        $this->db->where('id_provider', $provider);
+        $query = $this->db->get();
+        $response = $query->result_array();
+        if (!empty($response)){
+            return $response[0];
+        }
+        else {
+            return null;
+        }
     }
 
 }

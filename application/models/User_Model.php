@@ -158,7 +158,7 @@ class User_Model extends CI_Model  {
 
         $response = $query->result_array();
 
-        if ($response > 0){
+        if (!empty($response)){
             return $response[0];
         }
         else {

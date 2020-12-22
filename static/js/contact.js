@@ -55,15 +55,14 @@ $(document).ready(function(){
 
       Email.send(
         $('#loading').show(), {
-        Host : "mail.kecomer.com.mx",
-        Username : "correo@kecomer.com.mx",
-        Password : "ERROR#401@KECOMER%2022%SMTP",
-        To : 'comercial@kecomer.com.mx',
-        From : "correo@kecomer.com.mx",
-        Subject : $('#subject').val(),
-        Body : body
-        
-      }
+          Host : "mail.kecomer.com.mx",
+          Username : "correo@jauservice.com",
+          Password : "ERROR#401@JAUSERVICE%2022%SMTP",
+          To : 'comercial@jauservice.com',
+          From : "correo@jauservice.com",
+          Subject : $('#subject').val(),
+          Body : body
+        }
       ).then(
         console.log("Va"),
         //message => alert(message),
