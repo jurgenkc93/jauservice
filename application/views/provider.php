@@ -1,87 +1,114 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+<section class="wrapper">
+<br>
+    <div class="container">
+    
+        <br>
+        <?php if($provider){
+            ?>
+
+            <div class="row">
+                <h3 class="center color-blue-text"><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h3>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="250" width="250">
+                </div>
+                <div class="col-md-6 jumbotron my-3">
+                    <h5 class="times-font color-blue-text">Acerda de mi:</h5>
+                    <p><?php echo $provider['description']; ?></p>
+                    <?php if($provider['category']){
+                        foreach($provider['category'] AS $category){
+                            if($category['status'] == 1){
+                                ?>
+                                <label class="<?php echo $category['image']; ?> color-blue"><?php echo $category['name']; ?> </label>
+                                <?php
+                            }
+                        }
+                    }?>
+                </div>
+            </div>
+            <br>
+            <a href="#" id="<?php echo $provider['username']; ?>" class="btn btn-dark w-100 request-appointment"><i class="far fa-calendar-alt"></i>  Agendar cita</a>
+            <?php if(isset($_SESSION['phone'])){
+                ?>
+            <?php 
+                }
+                ?>
+            <br>
+            <br>
+
+            <h3 class="center">Experiencia:</h3>
+            <br>
+            <?php if($provider['category']){
+                foreach($provider['category'] AS $category){
+                    if($category['status'] == 1){
+                        ?>
+                            <div class="jumbotron">
+                                <div class="container">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <th class="w-100 color-blue-text"><h5><?php echo $category['name']; ?></h5></th>
+                                                <th class="w-100 color-blue-text"><h3 class="<?php echo $category['image']; ?>"></h3></th>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><p class="text-justify"><?php echo $category['description']; ?></p></td>
+                                            </tr>
+                                        </table>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        <?
+                    }else{
+                        ?>
+                        <?php
+
+                    }
+                }
+            }
+            ?>
+            <?php if($provider){
+                ?>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="..." alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="..." alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="..." alt="Third slide">
+                        </div>  
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <?php
+            }else{
+                ?>
+                <h1>Parece que algo ha salido mal, por favor vuelva a <a href="<?php echo base_url();?>index.php/service/all">buscar una categoría</a></h1>
+            <?php
+            }
+        }
+        ?>
+    </div>
+</section>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-
-<style>
-.borderless-form-control{
-	.border: 0;
-}
-</style>
-
-<div id="container" class="container">
-	<br>
-	<div class=" form-group">
-		<br>
-		<p></p>
-		<div class="row">
-			<div class="col-md-3">
-			</div>
-			<div class="col-md-6">
-			<img alt="" src="<?php echo base_url();?>static/img/logo.png" class="img-circle center" width="200">
-				<h2>Bienvenido</h2>
-				<br>
-				<p class="form-text text-muted" id="phone-warning">Parece que ya tienes cuenta <a href="<?php echo base_url();?>index.php/welcome/user">Iniciar Sesión</a></p>
-				<form action="<?php echo base_url();?>index.php/welcome/provider" class="" method="POST">
-					<div class="form-group" id="phone-div">
-						<label for="exampleInputPhone1">Teléfono a 10 digitos</label>
-						<input type="text" class="form-control" id="phone" placeholder="272 123 4567" max="10">
-						<small class="form-text text-muted"></small>
-						<p class="form-text text-danger" id="phone-warning-match">El teléfono no coincide</p>
-                    </div>
-                    
-					<div class="form-group">
-						<label>Nombre(s)*</label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Harry James">
-						<p class="form-text text-danger" id="name-warning">Nombre obligatorio</p>
-                    </div>
-                    
-					<div class="form-group">
-						<label>Apellido(s)*</label>
-						<input type="text" name="surname" id="surname" class="form-control" placeholder="Potter">
-						<p class="form-text text-danger" id="surname-warning">Apellidos obligatorio</p>
-					</div>
-                    
-					<div id="password-div">
-                        <p>Contraseña*</p>
-						<div class="input-group">
-							<input type="password" class="form-control " name="password" id="password" size="20" maxlength="20" placeholder="Contraseña..."/>
-							<span class="input-group-addon mx-2 my-3 far fa-eye fa-lg" id="eye-password">
-							</span>
-						</div>
-						<p class="form-text text-danger" id="password-warning">La contraseña debe de ser de 6 digitos y tener como minimo una letra mayuscula y un numero. (Maximo 20 caracteres)</p>
-						<br>
-                        <p>Repita su contraseña*</p>
-						<div class="input-group">
-							<input type="password" class="form-control" name="password-repeat" id="password-repeat" size="50" maxlength="50" placeholder="Contraseña..."/>
-							<span class="input-group-addon mx-2 my-3 far fa-eye fa-lg" id="eye-password-repeat">
-							</span>
-						</div>
-						<p class="form-text text-danger" id="password-repeat-warning">Las contraseñas no coinciden</p>
-						<br>
-					</div>
-
-					<div class="form-check">
-						<input class="form-check-input" type="checkbox" name="exampleRadios" id="terms-check">
-						<label class="form-check-label">
-							He leido y acepto los 
-						</label>
-						<a href="<?php echo base_url();?>index.php/welcome/privacy" id="terms-go" class="color-blue">Terminos y condiciones</a>
-						<p class="form-text text-danger" id="terms-warning">Por favor revisa y acepta nuestro contrato</p>
-					</div>
-					<br>
-
-
-					<div>
-						<input class="btn btn-primary w-100 background-blue" type="button" name="Subir" id="sign" value="Crear cuenta"/>
-					</div>
-					<br>
-				</form>
-			</div>
-			<div class="col-md-3">
-			</div>
-		</div>
-		<br>
-		<br>
-	</div>
-</div>
-
-<script src="<?php echo base_url();?>static/js/signup-provider.js" type="text/javascript"></script>
+<script src="<?php echo base_url();?>static/js/provider.js" type="text/javascript"></script>
