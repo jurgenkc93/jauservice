@@ -22,7 +22,7 @@ $(document).ready(function(){
                     '</form>',
                     buttons: {
                         accept: {
-                        text : 'Sí, contactar',
+                        text : 'Enviar mensaje',
                         btnClass : 'btn-primary',
                         action : function(){
                             var data = {

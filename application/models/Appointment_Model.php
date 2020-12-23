@@ -107,7 +107,7 @@ class Appointment_Model extends CI_Model  {
     }
 
     public function findUserDates($id_user){
-        $this->db->select('appointments.id, appointments.date, appointments.time, appointments.description, user.name, user.surname, user.username');
+        $this->db->select('appointments.id, appointments.date, appointments.time, appointments.description, user.name, user.surname, user.username, user.phone');
         $this->db->from('appointments');
         $this->db->join('user', 'user.id = appointments.id_provider');
         $this->db->where('date >=', $this->dateToday());
@@ -137,10 +137,27 @@ class Appointment_Model extends CI_Model  {
         $query = $this->db->get();
         
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response;
         }
-        else {
+        else{
+            return NULL;
+        }
+        
+    }
+
+    public function findComment($id_user, $id_provider){
+        $this->db->select('*');
+        $this->db->from('appointment_comments');
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_provider', $id_provider);
+        $query = $this->db->get();
+        $response = $query->result_array();
+        
+        if(!empty($response)){
+            return $response[0];
+        }
+        else{
             return NULL;
         }
         
@@ -155,10 +172,10 @@ class Appointment_Model extends CI_Model  {
         $query = $this->db->get();
         
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response;
         }
-        else {
+        else{
             return NULL;
         }
         
@@ -177,10 +194,10 @@ class Appointment_Model extends CI_Model  {
         $query = $this->db->get('appointments', 30);
         
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response;
         }
-        else {
+        else{
             return NULL;
         }
     }
@@ -198,10 +215,10 @@ class Appointment_Model extends CI_Model  {
         $query = $this->db->get();
     
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response;
         }
-        else {
+        else{
             return NULL;
         }
     }
@@ -219,10 +236,10 @@ class Appointment_Model extends CI_Model  {
         $query = $this->db->get();
         
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response;
         }
-        else {
+        else{
             return NULL;
         }
         
@@ -243,12 +260,50 @@ class Appointment_Model extends CI_Model  {
         $this->db->where('id_provider', $provider);
         $query = $this->db->get();
         $response = $query->result_array();
-        if (!empty($response)){
+        if(!empty($response)){
             return $response[0];
         }
-        else {
+        else{
             return null;
         }
+    }
+
+    public function findProviderForScore($user, $provider){
+        $this->db->select('user.name, user.surname, user.phone, appointments.date');
+        $this->db->from('appointment');
+        $this->db->where('id_user', $user);
+        $this->db->where('id_provider', $provider);
+        $this->db->join('user AS user', 'user.id = appointments.id_provider', 'left');
+        $query = $this->db->get();
+        $response = $query->result_array();
+        if(!empty($response)){
+            return $response[0];
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public function findUserPastDatesFull($id_user){
+        $this->db->select('appointments.id_provider, appointments.id_user, user.username, user.name, user.surname, user.phone, appointments.date, appointments.time, appointments.description');
+        $this->db->from('appointments');
+        $this->db->where('date <=', $this->dateToday());
+        $this->db->where('id_user', $id_user);
+        $this->db->where('id_status', 3);
+        $this->db->join('user AS user', 'user.id = appointments.id_provider', 'left');
+        
+        $this->db->group_by('id_provider');
+        $this->db->order_by('date', 'ASC');
+        $query = $this->db->get();
+        
+        $response = $query->result_array();
+        if(!empty($response)){
+            return $response;
+        }
+        else{
+            return NULL;
+        }
+        
     }
 
 }

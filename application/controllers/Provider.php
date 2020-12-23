@@ -35,6 +35,13 @@ class Provider extends CI_Controller {
 				$provider['category'] = $this->Category_Model->findServicesByPhoneForGeneral($phone);
 				$data['categories'] = $this->Category_Model->findAll();
 				$data['provider'] = $provider;
+
+				$directorio = 'users/'.$provider['phone'].'/jobs/';
+				$data['images'] = scandir($directorio);
+
+				unset($data['images'][0]);
+				unset($data['images'][1]);
+
 				$this->load->view('include/header');
 				$this->load->view('worker/provider', $data);
 				$this->load->view('include/footer');
@@ -114,7 +121,7 @@ class Provider extends CI_Controller {
 							if(!is_dir('./users/'.$_POST['phone'])){
 								mkdir('./users/'.$_POST['phone'], 0777, TRUE);
 								mkdir('./users/'.$_POST['phone'].'/profile', 0777, TRUE);
-								mkdir('./users/'.$_POST['phone'].'/works', 0777, TRUE);
+								mkdir('./users/'.$_POST['phone'].'/jobs', 0777, TRUE);
 							}
 							
 							if(!$this->upload->do_upload('picture')){
@@ -158,7 +165,7 @@ class Provider extends CI_Controller {
 							if(!is_dir('./users/'.$_POST['phone'])){
 								mkdir('./users/'.$_POST['phone'], 0777, TRUE);
 								mkdir('./users/'.$_POST['phone'].'/profile', 0777, TRUE);
-								mkdir('./users/'.$_POST['phone'].'/works', 0777, TRUE);
+								mkdir('./users/'.$_POST['phone'].'/jobs', 0777, TRUE);
 							}
 							
 							$this->User_Model->updateUser($provider);
@@ -208,21 +215,6 @@ class Provider extends CI_Controller {
             redirect('welcome/login');
         }
 	}
-/*
-	public function works($phone){
-		if(isset($_SESSION['phone'])){
-			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
-				$data['phone'] = $phone;
-				$this->load->view('include/header');
-				$this->load->view('worker/picture', $data);
-				$this->load->view('include/footer');
-			}else{
-				redirect('welcome/login');
-			}
-        }else{
-            redirect('welcome/login');
-        }
-	}*/
 
 	public function uploadProviderPicture(){
 		$this->load->helper("file");
@@ -247,7 +239,7 @@ class Provider extends CI_Controller {
 					if(!is_dir('./users/'.$_POST['phone'])){
 						mkdir('./users/'.$_POST['phone'], 0777, TRUE);
 						mkdir('./users/'.$_POST['phone'].'/profile', 0777, TRUE);
-						mkdir('./users/'.$_POST['phone'].'/works', 0777, TRUE);
+						mkdir('./users/'.$_POST['phone'].'/jobs', 0777, TRUE);
 					}
 					delete_files('./users/'.$_POST['phone'].'/profile');
 					if(!$this->upload->do_upload('picture')){
@@ -279,6 +271,97 @@ class Provider extends CI_Controller {
 					$this->load->view('include/header');
 					$this->load->view('messages/warning-message', $data);
 					$this->load->view('worker/form');
+					$this->load->view('include/footer');
+				}
+			}else{
+				redirect('welcome/login');
+			}
+        }else{
+            redirect('welcome/login');
+        }
+	}
+
+	public function jobs($phone){
+		if(isset($_SESSION['phone'])){
+			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
+				$data['phone'] = $phone;
+				$directorio = 'users/'.$phone.'/jobs/';
+				$data['images'] = scandir($directorio);
+
+				unset($data['images'][0]);
+				unset($data['images'][1]);
+
+				$this->load->view('include/header');
+				$this->load->view('worker/jobs', $data);
+				$this->load->view('include/footer');
+			}else{
+				redirect('welcome/login');
+			}
+        }else{
+            redirect('welcome/login');
+        }
+	}
+
+	public function uploadProviderJob(){
+		$this->load->helper("file");
+		if(isset($_SESSION['phone'])){
+			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
+				if($_POST['phone'] != ''){
+					
+					$provider = $this->User_Model->findByPhone($_POST['phone']);
+
+					$path = "./users/".$_POST['phone']."/jobs/";
+					$config['upload_path'] = $path;
+					$config['allowed_types'] = 'jpg|png|jpeg';
+					$config['max_size'] = '2048';
+					$config['max_width'] = '2048';
+					$config['max_height'] = '2048';
+					$config['file_name'] = 'job';
+					
+					$this->load->library('upload', $config);
+					$this->load->library('encryption');
+
+					if(!is_dir('./users/'.$_POST['phone'])){
+						mkdir('./users/'.$_POST['phone'], 0777, TRUE);
+						mkdir('./users/'.$_POST['phone'].'/profile', 0777, TRUE);
+						mkdir('./users/'.$_POST['phone'].'/jobs', 0777, TRUE);
+					}
+					
+					$directorio = 'users/'.$provider['phone'].'/jobs/';
+					$data['images'] = scandir($directorio);
+
+					unset($data['images'][0]);
+					unset($data['images'][1]);
+
+					if(!$this->upload->do_upload('picture')){
+						$error = array('error' => $this->upload->display_errors());
+						$data['message'] = $error['error'];
+						$data['phone'] = $_POST['phone'];
+						$this->load->view('include/header');
+						$this->load->view('messages/warning-message', $data);
+						$this->load->view('worker/jobs', $data);
+						$this->load->view('include/footer');
+						
+						//echo json_encode($error);
+						//$this->load->view('upload_form', $error);
+					}else{
+						//$data = array('upload_data' => $this->upload->data());
+						$data['message'] = 'Foto agregada';
+						$data['phone'] = $_POST['phone'];
+						$this->load->view('include/header');
+						$this->load->view('messages/primary-message', $data);
+						$this->load->view('worker/jobs', $data);
+						$this->load->view('include/footer');
+						
+						//echo json_encode($data);
+						//$this->load->view('upload_success', $data);
+					}
+					//delete_files($config['upload_path'].'/'.$_POST['phone'].'.jpg');
+				}else{
+					$data['message'] = 'Existieron campos faltantes.';
+					$this->load->view('include/header');
+					$this->load->view('messages/warning-message', $data);
+					$this->load->view('worker/jobs', $data);
 					$this->load->view('include/footer');
 				}
 			}else{

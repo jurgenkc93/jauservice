@@ -7,6 +7,7 @@
         ?>
         <a href="<?php echo base_url();?>index.php/provider/list" id="request-appointment" class="btn btn-info w-100"> <i class="fas fa-arrow-circle-left"></i> <i class="fas fa-users"></i>  Volver a mis proveedores</a>
         <br>
+        <br>
 
         <input type="hidden" id="phone-provider" value="<?php echo $provider['phone']; ?>">
         <div class="row">
@@ -21,14 +22,14 @@
                 <a class="btn btn-success w-100" href="<?php echo base_url(); ?>index.php/provider/picture/<?php echo $provider['phone']; ?>"><i class="far fa-image"></i> Cambiar imagen</a>
             </div>
             <div class="col-md-6 jumbotron my-3">
-                <h5 class="times-font">Acerda de mi:</h5>
+                <h5 class="times-font">Acerca de mi:</h5>
                 <textarea class="form-control" type="text" id="description"><?php echo $provider['description']; ?></textarea>
                 <p id="count-description"></p>
-                <button class="btn btn-primary w-100" id="about"><i class="fas fa-plus-circle"></i> Cambiar</button>
+                <button class="btn btn-primary w-100" id="about"><i class="far fa-edit"></i> Cambiar</button>
             </div>
         </div>
 
-        <a href="<?php echo base_url();?>index.php/provider/works/<?php echo $provider['phone']; ?>" id="request-appointment" class="btn btn-info w-100"> <i class="fas fa-arrow-circle-left"></i> <i class="fas fa-users"></i>  Volver a mis proveedores</a>
+        <a href="<?php echo base_url();?>index.php/provider/jobs/<?php echo $provider['phone']; ?>" id="request-appointment" class="btn btn-info w-100"> <i class="fas fa-images"></i>  Subir imagenes de trabajos</a>
         <br>
         <br>
         <a href="<?php echo base_url();?>index.php/service/provider/<?php echo $provider['username']; ?>" id="request-appointment" class="btn btn-dark w-100"><i class="far fa-calendar-alt"></i>  Ver perfil</a>
@@ -109,24 +110,28 @@
             <?php
         }
         ?>
-        <?php if($provider){
+        <?php if(!empty($images)){
             ?>
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <?php for($i = 0; $i < count($images); $i++){
+                        ?>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>" class="<?php if($i == 0 ){ echo "actice"; } ?>"></li>
+                        <?php
+                    }
+                    ?>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="..." alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="..." alt="Third slide">
-                    </div>  
+                    <?php $i = 0; 
+                        foreach($images AS $image){
+                        ?>
+                            <div class="carousel-item <?php if($i == 0){echo "active";} ?>">
+                                <img class="d-block w-100" src="<?php echo base_url();?>users/<?php echo $phone;?>/jobs/<?php echo $image;?>">
+                            </div>
+                        <?php
+                        $i++;
+                    } 
+                    ?>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -140,7 +145,6 @@
             <?php
         }else{
             ?>
-            <h1>Parece que algo ha salido mal, por favor vuelva a <a href="<?php echo base_url();?>index.php/service/all">buscar una categoría</a></h1>
         <?php
         }
     }

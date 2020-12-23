@@ -24,7 +24,7 @@ class User extends CI_Controller {
                     $index++;
                 }
                 if(!empty($past_appointments)){
-                    $message['message'] = '<a href="'.base_url().'index.php/user/providers">Usted tiene '.count($past_appointments).' comentario(s) sobre los servicios prestados.</a>';
+                    $message['message'] = '<a href="'.base_url().'index.php/user/comments">Usted tiene '.count($past_appointments).' comentario(s) sobre los servicios prestados.</a>';
                     $this->load->view('messages/dark-message', $message);
                 }
             }
@@ -37,14 +37,61 @@ class User extends CI_Controller {
 			
     }
 
-	public function provider(){
+	public function comments(){
 		if(isset($_SESSION['phone'])){
-            $provider = $this->User_Model->findByPhone($_SESSION['phone']);
+
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $data['date'] = $this->Appointment_Model->findById($user['id']);
+
+            $past_appointments = $this->Appointment_Model->findUserPastDatesFull($user['id']);
+            if($past_appointments != null){
+                $index = 0;
+                foreach($past_appointments AS $appointment){
+                    if($this->Appointment_Model->findUserComentProvider($user['id'], $appointment['id_provider'])){
+                        unset($past_appointments[$index]);
+                    }
+                    $index++;
+                }
+            }
+            
+            $data['comments'] = $past_appointments;
+            /*
+            echo json_encode($data);
+            echo ($past_appointments);
+            */
+            $this->load->view('include/header');
+            $this->load->view('user/comments_to_do', $data);
+            $this->load->view('include/footer');
+        }else{
+            redirect('welcome/login');
+        }
+    }
+
+	public function comment($username){
+		if(isset($_SESSION['phone'])){
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $provider = $this->User_Model->findByUsername($username);
+
+            $comment = $this->Appointment_Model->findComment($user['id'], $provider['id']);
+
+            $data['provider_phone'] = $provider['phone'];
+            $data['provider_name'] = $provider['name'];
+            $data['provider_surname'] = $provider['surname'];
+            $data['provider_username'] = $provider['username'];
+
+            if($comment != null){
+                $data['user_comment'] = $comment['user_comment'];
+                $data['provider_rank'] = $comment['rank_provider'];
+            }
+
+            /*
             $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
             $data['categories'] = $this->Category_Model->findAll();
             $data['provider'] = $provider;
+            */
+
             $this->load->view('include/header');
-            $this->load->view('user/provider', $data);
+            $this->load->view('user/comment', $data);
             $this->load->view('include/footer');
         }else{
             redirect('welcome/login');
@@ -95,9 +142,6 @@ class User extends CI_Controller {
                                     unset($dates[$jndex]);
                                 }
 
-                                /*
-                                */
-
                                 $ndate = strtotime($days[$index]['date']);
                                 $days[$index]['date'] = date('D d-m-Y', $ndate);
                                 
@@ -146,6 +190,46 @@ class User extends CI_Controller {
         
     }
 
+    public function providers(){
+        /*
+        header("Access-Control-Allow-Headers: *");
+        header('Access-Control-Allow-Origin: *');
+        header("Access-Control-Allow-Methods: GET");
+        header('Content-Type: application/json');*/
+        if(isset($_SESSION['phone'])){
+
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $data['date'] = $this->Appointment_Model->findById($user['id']);
+
+            $past_appointments = $this->Appointment_Model->findUserPastDatesFull($user['id']);
+            if($past_appointments != null){
+                $index = 0;
+                foreach($past_appointments AS $appointment){
+                    if($this->Appointment_Model->findUserComentProvider($user['id'], $appointment['id_provider'])){
+                        unset($past_appointments[$index]);
+                    }
+                    $index++;
+                }
+                if(!empty($past_appointments)){
+                    $message['message'] = '<a href="'.base_url().'index.php/user/comments">Usted tiene '.count($past_appointments).' comentario(s) sobre los servicios prestados.</a>';
+                    //$this->load->view('messages/dark-message', $message);
+                }
+            }
+            
+            $data['comments'] = $past_appointments;
+            /*
+            echo json_encode($data);
+            echo ($past_appointments);
+            */
+            $this->load->view('include/header');
+            $this->load->view('user/comments_to_do', $data);
+            $this->load->view('include/footer');
+        }else{
+            redirect('welcome/login');
+        }
+        
+    }
+
     public function date2app($id){
         if(isset($_SESSION['phone'])){
             if($_POST['date'] != '' && $_POST['time'] != '' && $_POST['phone']){
@@ -156,6 +240,27 @@ class User extends CI_Controller {
                     $this->Appointment_Model->date2Appointment($id, $_POST['date'], $_POST['time']);
                     redirect('user/dates');
                 }
+            }
+        }else{
+            redirect('welcome/login');
+        }
+    }
+
+    public function makeProviderComment(){
+        if(isset($_SESSION['phone'])){
+            if($_POST['userphone'] != '' && $_POST['provider_phone'] != '' && $_POST['phone']){
+                $user = $this->User_Model->findByPhone($_POST['userphone']);
+                $provider = $this->User_Model->findByPhone($_POST['userphone']);
+                
+                $comment = $this->Appointment_Model->findComment($user['id'], $provider['id']);
+
+                $comment['id_provider'] = $provider['rank_provider'];
+                $comment['id_user'] = $user['id'];
+                $comment['rank_provider'] = $_POST['rank_provider'];
+                $comment['provider_comments'] = $_POST['provider_comments'];
+
+                $this->Appointment_Model->makeProviderComment($comment);
+                
             }
         }else{
             redirect('welcome/login');
