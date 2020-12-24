@@ -158,7 +158,7 @@ class User_Model extends CI_Model  {
 
         $response = $query->result_array();
 
-        if ($response > 0){
+        if (!empty($response)){
             return $response[0];
         }
         else {
@@ -198,6 +198,12 @@ class User_Model extends CI_Model  {
     public function statusOff($phone){
         $this->db->set('status', 0);
         $this->db->where('phone', $phone);
+        $this->db->update('user');
+    }
+
+    public function changeProviderScore($provider, $score){
+        $this->db->set('score', $score);
+        $this->db->where('id', $provider);
         $this->db->update('user');
     }
 
@@ -263,7 +269,7 @@ class User_Model extends CI_Model  {
     }
     
     public function findServiceProviders($category){
-        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description');
+        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description, user.score');
         $this->db->from('user_category');
 
         

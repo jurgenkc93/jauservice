@@ -89,13 +89,63 @@ class Users extends CI_Controller {
 					$response['error'] = $e;
 					//echo json_encode($e);
 				}
-				$response['title'] = "Bienvenido ".$newUser['name']." por favor ";
+				$response['title'] = "Bienvenido ".$newUser['name'];
 				$response['body'] = 'Ya puedes empezar a utilizar Jauservice <a href="'.base_url().'"index.php/welcome/user">Iniciar Sesión</a>';
 				$response['action'] = base_url().'index.php/welcome/user';
 				echo json_encode($response);
 			}else{
 				$response['title'] = "Cuenta existente!";
 				$response['body'] = 'Usted ya tiene una cuenta pruebe <a href="'.base_url().'"index.php/welcome/user">iniciando Sesión</a>';
+				echo json_encode($response);
+			}
+		}else{
+			echo json_encode('Ora no empujen!');
+		}
+	}
+
+	public function createNewProvider(){
+		if(file_get_contents('php://input')){
+			$json = file_get_contents('php://input');
+
+			// Converts it into a PHP object
+			$data = json_decode($json);
+			
+			$this->load->library('encryption');
+			
+			$encrytptedPass = $this->encryption->encrypt($data->password);
+			
+			$user = $this->User_Model->findByPhone($data->phone);
+
+			if($user == null){
+				$newUser = array(
+					"phone"=>$data->phone,
+					"password"=>$encrytptedPass,
+					"name"=>$data->name,
+					"surname"=>$data->surname,
+					"status"=>2,
+					"id_role"=>4
+				);
+				try{
+					$this->User_Model->insertUser($newUser);
+				}catch(Exception $e){
+					$response['error'] = $e;
+					//echo json_encode($e);
+				}
+				$response['title'] = "Gracias ".$newUser['name']." nos comunicaremos contigo ";
+				$response['body'] = 'Ya puedes empezar a utilizar Jauservice y nos comunicaremos posteriormente <a href="'.base_url().'"index.php/welcome/user">Iniciar Sesión</a>';
+				$response['action'] = base_url().'index.php/welcome/user';
+				echo json_encode($response);
+			}else{
+				$user['status'] = 2;
+				$user['id_role'] = 4;
+				try{
+					$this->User_Model->updateUser($user);
+				}catch(Exception $e){
+					$response['error'] = $e;
+					//echo json_encode($e);
+				}
+				$response['title'] = "Su cuenta se ha modificado!";
+				$response['body'] = 'Usted ya tenía una cuenta y ha sido modificada pero sin alterar su nombre, apellidos ni contraseña, nos comunicaremos con usted <a href="'.base_url().'"index.php/welcome/user">Iniciar Sesión</a>';
 				echo json_encode($response);
 			}
 		}else{
@@ -160,8 +210,7 @@ class Users extends CI_Controller {
 
 			if($id != NULL){
 				$category = $this->Category_Model->findCategoryExistanceByUserId($id['id'], $data->id);
-				echo json_encode($data);
-				/*
+				
 				if($category != NULL){
 					//$category = $this->Category_Model->findCategoryExistanceByUserId($obj['id_user'], $obj['id_category']);
 					$response['title'] = 'Categoría existente';
@@ -172,13 +221,16 @@ class Users extends CI_Controller {
 					$category['id_category'] = $data->id;
 					$category['description'] = $data->description;
 					$this->Category_Model->createUserCategory($category);
-
+					
 					$response['title'] = 'Categoría agregada';
-					$response['body'] = '';
+					$response['body'] = 'Vuelva a cargar esta página ';
 					
 					echo json_encode($response);
 				}
-				*/
+				
+			}else{
+				
+				echo json_encode("Elise");
 			}
 			
 		}else{

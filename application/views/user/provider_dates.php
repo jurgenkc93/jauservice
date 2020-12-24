@@ -1,10 +1,14 @@
+<br>
+<div class="container">
+    <a href="#" class="btn btn-primary w-100"><i class="fas fa-plus-circle"></i> Agregar una cita</a>
+</div>
+<br>
 <?php if($pending_dates_as_provider || $dates){
     ?>
     <div class="container">
 
         <?php if($pending_dates_as_provider){
             ?>
-            <br>
             <br>
             <br>
             <table class="table table-borderless">

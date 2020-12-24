@@ -7,25 +7,31 @@
 }
 </style>
 
-<div class="container">
+<div class="container jumbotron">
+    <a class="btn btn-secondary w-100" href="<?php echo base_url(); ?>index.php/user/" name="Subir" id="sign"> <i class="fas fa-arrow-circle-left"></i> Volver a opciones de cuena</a>
     <br>
     <?php echo form_open_multipart('provider/createProvider');?>
     <!--<form action="<?php echo base_url();?>index.php/worker/createProvider" class="" method="POST">-->
 
-    <div class="form-group">
-        <label for="exampleFormControlFile1">Suba una foto</label>
-        <br>
-        <input type="file"  id="picture" name="picture" size="20" onchange="readURL(this);" >
-        <br>
-        <img alt="" id="profpic"  class="center rounded" src="#">
-                
-    </div>
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Suba una foto</label>
+            <br>
+            <input type="file"  id="picture" name="picture" size="20" onchange="readURL(this);" >
+            <br>
+            <img alt="" id="profpic"  class="center rounded" src="#">
+                    
+        </div>
 
         <div class="form-group" id="phone-div">
             <label for="exampleInputPhone1">Teléfono a 10 digitos</label>
             <input type="text" class="form-control" name="phone" id="phone" placeholder="272 123 4567" max="10" >
         </div>
         
+        <div class="form-group">
+            <label>Nombre de usuario*</label>
+            <input type="text" name="username" id="name" class="form-control" placeholder="username..." >
+        </div>
+
         <div class="form-group">
             <label>Nombre(s)*</label>
             <input type="text" name="name" id="name" class="form-control" placeholder="Harry James" >

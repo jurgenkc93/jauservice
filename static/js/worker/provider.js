@@ -34,6 +34,7 @@ $(document).ready(function(){
                 $('#description-new').val("");
             },
             error: function(xhr) {
+                console.log(xhr);
                 $.alert({
                     title: '¡Algo salió mal!',
                     content: 'Por favor intente de nuevo o mas tarde.'

@@ -12,55 +12,64 @@
   
 </style>
 
-<section class="wrapper">
-<br>
-    <div class="container">
-    
-        <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/logo.png" width="250" height="150">
-        <img alt="" class="center rounded w-100" src="<?php echo base_url();?>static/img/home/pleca.png" height="100">
-        <i class="<?php echo $category->image; ?> fa-2x color-white"></i>
+<div class="container">
+
+    <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/logo.png" width="250" height="150">
+    <img alt="" class="center rounded w-100" src="<?php echo base_url();?>static/img/home/pleca.png" height="100">
+    <?php if($category){
+        ?>
+        <i class="<?php echo $category['image']; ?> fa-2x"></i>
+        <h1 class=""><?php echo $category['name']; ?></h1>
         <br>
-        <?php if($category){
+        <div class="row">
+        <?php if($providers){
             ?>
-			<h1 class=""><?php echo $category->name; ?></h1>
-            <br>
-            <div class="row">
-            <?php if($providers){
-                ?>
-                <?php foreach($providers as $provider){
-                ?>
-                    <div class="col-md-6 hover-pointer center row" id="<?php echo $provider['username']; ?>" onclick="findProvider(this.id)">
-                        <table class="table table-borderless jumbotron">
-                            <tbody>
-                                <tr>
-                                    <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="200"></th>
-                                    <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
-                                    <td><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star " style="color: yellow;"></i><i class="far fa-star " style="color: yellow;"></i></td>
+            <?php foreach($providers as $provider){
+            ?>
+                <div class="col-md-6 hover-pointer center row" id="<?php echo $provider['username']; ?>" onclick="findProvider(this.id)">
+                    <table class="table table-borderless jumbotron">
+                        <tbody>
+                            <tr>
+                                <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>users/<?php echo $provider['phone']; ?>/profile/profile-picture.jpg" height="200"></th>
+                                <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
+                                <td>
+                                <?php for($i = 0; $i < $provider['score']; $i++){
+                                    ?>
+                                    <i class="fas fa-star color-blue">
+                                    <?php
+                                }
+                                if($i <= 4){
+                                    for($j = $i; $j <= 4; $j++){
+                                        ?>
+                                        <i class="far fa-star color-blue"></i>
+                                        <?php
+                                    }
+                                }
+                                ?>
                                 </tr>
-                                <tr>
-                                    <td colspan="2"><p class="times-font"><?php echo $provider['description']; ?></p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            <tr>
+                                <td colspan="2"><p class="times-font"><?php echo $provider['description']; ?></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
-                <?php
-                }
-                ?>
-			<?php
+            <?php
             }
-			?>
-            </div>
+            ?>
         <?php
-		}else{
-			?>
-			<h1>Parece que algo ha salido mal, por favor vuelva a <a href="<?php echo base_url();?>index.php/service/all">buscar una categoría</a></h1>
-		<?php
-		}
-		?>
-    </div>
+        }
+        ?>
+        </div>
+    <?php
+    }else{
+        ?>
+        <h1>Parece que algo ha salido mal, por favor vuelva a <a href="<?php echo base_url();?>index.php/service/all">buscar una categoría</a></h1>
+    <?php
+    }
+    ?>
+</div>
 
-</section>
 
 <script src="<?php echo base_url();?>static/js/service.js" type="text/javascript"></script>

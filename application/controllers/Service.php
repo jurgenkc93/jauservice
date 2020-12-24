@@ -61,6 +61,12 @@ class Service extends CI_Controller {
 
 		$data['provider'] = $provider;
 
+		$directorio = 'users/'.$provider['phone'].'/jobs/';
+		$data['images'] = scandir($directorio);
+
+		unset($data['images'][0]);
+		unset($data['images'][1]);
+
 		$this->load->view('include/header');
 		$this->load->view('provider', $data);
 		$this->load->view('include/footer');

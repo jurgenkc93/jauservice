@@ -15,7 +15,11 @@
         <link rel="icon" href="<?php echo base_url();?>static/img/favicon.ico" type="img/x-icon"/>    
         <title>JauService</title>
     </head>
-	<link rel="stylesheet" href="<?php echo base_url();?>static/assets/bootstrap/css/bootstrap.css">
+	<!--
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    -->
+        <link rel="stylesheet" href="<?php echo base_url();?>static/assets/bootstrap/css/bootstrap.css">
+    
     <link rel="stylesheet" href="<?php echo base_url();?>static/css/master/master.css">
     
     <script src="<?php echo base_url();?>static/assets/js/jquery-3-4.js" type="text/javascript"></script>
@@ -60,7 +64,6 @@
             <?php 
                 }
                 ?>
-            
         </ul>
 
         <?php if(isset($_SESSION['phone'])){ ?>

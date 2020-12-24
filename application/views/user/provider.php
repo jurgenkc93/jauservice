@@ -19,10 +19,10 @@
             
             <div class="row">
                 <div class="col-md-6">
-                    <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/users/<?php echo $provider['phone']; ?>.jpg" height="250" width="250">
+                    <img alt="" class="center rounded" src="<?php echo base_url();?>/users/<?php echo $provider['phone']; ?>/profile/profile-picture.jpg" height="250" width="250">
                 </div>
                 <div class="col-md-6 jumbotron my-3">
-                    <h5 class="times-font">Acerda de mi:</h5>
+                    <h5 class="times-font">Acerca de mi:</h5>
                     <textarea class="form-control" type="text" id="description"><?php echo $provider['description']; ?></textarea>
                     <p id="count-description"></p>
                     <button class="btn btn-primary w-100" id="about"><i class="fas fa-plus-circle"></i> Cambiar</button>
