@@ -17,7 +17,7 @@
                         ?>
                         <tr class="">
                             <td>
-                                <img alt="" class="rounded " src="<?php echo base_url();?>users/<?php echo $comment['phone']; ?>/profile/profile-picture.jpg" height="50" width="50">
+                                <img alt="" class="img-circle" src="<?php echo base_url();?>users/<?php echo $comment['phone']; ?>/profile/profile-picture.jpg" height="50" width="50">
                                 <br />
                                 <br />
                             </td>

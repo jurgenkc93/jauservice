@@ -17,7 +17,7 @@
             <input type="file"  id="picture" name="picture" size="20" onchange="readURL(this);" >
             <input type="hidden" name="phone" value="<?php echo $phone; ?>" >
             <br>
-            <img alt="" id="profpic" src="<?php echo base_url();?>/users/<?php echo $phone; ?>/profile/profile-picture.jpg" height="350" width="350" class="center rounded">
+            <img alt="" id="profpic" src="<?php echo base_url();?>/users/<?php echo $phone; ?>/profile/<?php echo $image;?>" height="350" width="350" class="center rounded">
                     
         </div>
         

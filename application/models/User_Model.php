@@ -239,6 +239,12 @@ class User_Model extends CI_Model  {
         $this->db->update('user');
     }
 
+    public function changeUserImage($phone, $image){
+        $this->db->set('image', $image);
+        $this->db->where('phone', $phone);
+        $this->db->update('user');
+    }
+
     public function findNearServices($longitude, $latitude){
         $this->db->select('category.name, category.id, category.image, category.keycode');
         $this->db->from('user_category');
@@ -269,10 +275,9 @@ class User_Model extends CI_Model  {
     }
     
     public function findServiceProviders($category){
-        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description, user.score');
+        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description, user.score, user.image');
         $this->db->from('user_category');
 
-        
         $this->db->join('user', 'user.id = user_category.id_user');
         $this->db->join('category', 'category.id = user_category.id_category');
         

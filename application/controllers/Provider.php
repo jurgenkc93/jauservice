@@ -41,7 +41,7 @@ class Provider extends CI_Controller {
 
 				unset($data['images'][0]);
 				unset($data['images'][1]);
-
+				
 				$this->load->view('include/header');
 				$this->load->view('worker/provider', $data);
 				$this->load->view('include/footer');
@@ -92,7 +92,7 @@ class Provider extends CI_Controller {
 					$config['max_width'] = '2048';
 					$config['max_height'] = '2048';
 					$config['file_name'] = 'profile-picture';
-					$config['file_type'] = 'jpg';
+					$config['file_type'] = 'jpeg';
 					
 					$this->load->library('upload', $config);
 
@@ -104,19 +104,6 @@ class Provider extends CI_Controller {
 
 							$date_started = date('Y-m-d H:i:s', time());
 							$next_renewed = date('Y-m-d H:i:s', time()+2629800);
-
-							$user = array(
-								"phone"=>$_POST['phone'],
-								"username"=>$_POST['username'],
-								"password"=>$password,
-								"name"=>$_POST['name'],
-								"surname"=>$_POST['surname'],
-								"id_role"=>4,
-								"status"=>1,
-								"date_started"=>date('Y-m-d H:i:s', time()),
-								"next_renew"=>date('Y-m-d H:i:s', time() + 2717460),
-								"user_of"=>$worker['id']
-							);
 
 							if(!is_dir('./users/'.$_POST['phone'])){
 								mkdir('./users/'.$_POST['phone'], 0777, TRUE);
@@ -136,6 +123,24 @@ class Provider extends CI_Controller {
 								//echo json_encode($error);
 								//$this->load->view('upload_form', $error);
 							}else{
+								$directorio = 'users/'.$provider['phone'].'/profile/';
+								$data['images'] = scandir($directorio);
+								$image = $data['images'][2];
+
+								$user = array(
+									"phone"=>$_POST['phone'],
+									"username"=>$_POST['username'],
+									"password"=>$password,
+									"name"=>$_POST['name'],
+									"surname"=>$_POST['surname'],
+									"id_role"=>4,
+									"status"=>1,
+									"date_started"=>date('Y-m-d H:i:s', time()),
+									"next_renew"=>date('Y-m-d H:i:s', time() + 2717460),
+									"user_of"=>$worker['id'],
+									"image"=>$image
+								);
+
 								$this->User_Model->insertUser($user);
 								$data = array('upload_data' => $this->upload->data());
 								$data['message'] = 'Usuario agregado';
@@ -199,12 +204,12 @@ class Provider extends CI_Controller {
         }
 	}
 
-
-
 	public function picture($phone){
 		if(isset($_SESSION['phone'])){
 			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
 				$data['phone'] = $phone;
+				$user = $this->User_Model->findByPhone($phone);
+				$data['image'] = $user['image'];
 				$this->load->view('include/header');
 				$this->load->view('worker/picture', $data);
 				$this->load->view('include/footer');
@@ -231,7 +236,7 @@ class Provider extends CI_Controller {
 					$config['max_width'] = '2048';
 					$config['max_height'] = '2048';
 					$config['file_name'] = 'profile-picture';
-					$config['file_type'] = 'jpg';
+					$config['file_type'] = 'jpeg';
 					
 					$this->load->library('upload', $config);
 					$this->load->library('encryption');
@@ -257,6 +262,15 @@ class Provider extends CI_Controller {
 						$data = array('upload_data' => $this->upload->data());
 						$data['message'] = 'Foto actualizada';
 						$data['phone'] = $_POST['phone'];
+
+						$directorio = 'users/'.$provider['phone'].'/profile/';
+						$data['images'] = scandir($directorio);
+						$image = $data['images'][2];
+
+						$this->User_Model->changeUserImage($_POST['phone'], $image);
+
+						$data['image'] = $image;
+
 						$this->load->view('include/header');
 						$this->load->view('messages/primary-message', $data);
 						$this->load->view('worker/picture', $data);

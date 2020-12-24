@@ -18,7 +18,7 @@
         
         <div class="row">
             <div class="col-md-6">
-                <img alt="" class="center rounded" src="<?php echo base_url(); ?>users/<?php echo $provider['phone']; ?>/profile/profile-picture.jpg" height="250" width="250">
+                <img alt="" class="center rounded" src="<?php echo base_url(); ?>users/<?php echo $provider['phone']; ?>/profile/<?php $provider['image']; ?>" height="250" width="250">
                 <a class="btn btn-success w-100" href="<?php echo base_url(); ?>index.php/provider/picture/<?php echo $provider['phone']; ?>"><i class="far fa-image"></i> Cambiar imagen</a>
             </div>
             <div class="col-md-6 jumbotron my-3">
@@ -126,7 +126,7 @@
                         foreach($images AS $image){
                         ?>
                             <div class="carousel-item <?php if($i == 0){echo "active";} ?>">
-                                <img class="d-block w-100" src="<?php echo base_url();?>users/<?php echo $phone;?>/jobs/<?php echo $image;?>">
+                                <img class="d-block w-100" src="<?php echo base_url();?>users/<?php echo $phone;?>/jobs/<?php echo $image; ?>">
                             </div>
                         <?php
                         $i++;
