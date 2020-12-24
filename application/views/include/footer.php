@@ -41,7 +41,7 @@
             <li>
             </li>
             <li>
-              <h5>Teléfono y whatsapp</h5>
+              <h5 class="color-white">Teléfono y whatsapp</h5>
               <h5 style="color:white;"><img src="<?php echo base_url();?>static/icons/whatsapp.png" height="35px" width="35px" style="margin-right: 5%;">   272 154 9510</h5>
             </li>
             <li>
