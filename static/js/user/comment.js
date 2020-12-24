@@ -21,6 +21,7 @@ $(document).ready(function(){
             }
         }
         $('#ranking').val(i);
+        $('#start-text').text(i);
   });
 
 });

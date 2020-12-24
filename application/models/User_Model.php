@@ -201,6 +201,12 @@ class User_Model extends CI_Model  {
         $this->db->update('user');
     }
 
+    public function changeProviderScore($provider, $score){
+        $this->db->set('score', $score);
+        $this->db->where('id', $provider);
+        $this->db->update('user');
+    }
+
     public function findAllServices(){
         $this->db->select('category.name, category.id, category.image, category.keycode');
         $this->db->from('user_category');
@@ -263,7 +269,7 @@ class User_Model extends CI_Model  {
     }
     
     public function findServiceProviders($category){
-        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description');
+        $this->db->select('user.name, user.username, user.surname, user.status AS user_status, user_category.status AS category_status, user.workshop, user.address_1, user.phone, user.description, user.score');
         $this->db->from('user_category');
 
         

@@ -268,6 +268,20 @@ class Appointment_Model extends CI_Model  {
         }
     }
 
+    public function findProviderComments($id_provider){
+        $this->db->select('*');
+        $this->db->from('appointment_comments');
+        $this->db->where('id_provider', $id_provider);
+        $query = $this->db->get();
+        $response = $query->result_array();
+        if(!empty($response)){
+            return $response;
+        }
+        else{
+            return null;
+        }
+    }
+
     public function findProviderForScore($user, $provider){
         $this->db->select('user.name, user.surname, user.phone, appointments.date');
         $this->db->from('appointment');
@@ -304,6 +318,14 @@ class Appointment_Model extends CI_Model  {
             return NULL;
         }
         
+    }
+
+    public function makeProviderComment($comment){
+        $this->db->insert("appointment_comments", $comment);
+    }
+
+    public function updateProviderComment($comment){
+        $this->db->replace("appointment_comments", $comment);
     }
 
 }

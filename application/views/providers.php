@@ -32,8 +32,21 @@
                             <tr>
                                 <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>users/<?php echo $provider['phone']; ?>/profile/profile-picture.jpg" height="200"></th>
                                 <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
-                                <td><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star" style="color: yellow;"></i><i class="fas fa-star " style="color: yellow;"></i><i class="far fa-star " style="color: yellow;"></i></td>
-                            </tr>
+                                <td>
+                                <?php for($i = 0; $i < $provider['score']; $i++){
+                                    ?>
+                                    <i class="fas fa-star color-blue">
+                                    <?php
+                                }
+                                if($i <= 4){
+                                    for($j = $i; $j <= 4; $j++){
+                                        ?>
+                                        <i class="far fa-star color-blue"></i>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                                </tr>
                             <tr>
                                 <td colspan="2"><p class="times-font"><?php echo $provider['description']; ?></p></td>
                             </tr>

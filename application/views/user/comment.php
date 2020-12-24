@@ -13,9 +13,7 @@
             <input type="hidden" name="userphone" value="<?php echo $_SESSION['phone']; ?>" >
             <input type="hidden" name="provider_phone" value="<?php echo $provider_phone; ?>" >
             <br/>
-            <i class="">Calificacón de 1 a 5</i>
-            <br/>
-            <br/>
+            <p class="">Calificacón: <label id="start-text">4</label> de <label>5</label></p>
             <?php if(isset($provider_rank)){
                 $rank = explode('. ', $provider_rank);
                 for($i = 0; $i < $rank[0]; $i++){
@@ -24,19 +22,22 @@
                 <?php
                 }
             }else{
-                for($i = 0; $i < 5; $i++){
+                for($i = 0; $i < 4; $i++){
                 ?>
-                    <i class="star far fa-star fa-2x mx-2 color-blue" id="star-<?php echo $i; ?>"></i>
+                    <i class="star fas fa-star fa-2x mx-2 color-blue" id="star-<?php echo $i; ?>"></i>
                 <?php
-                }
+                }?>
+                    <i class="star far fa-star fa-2x mx-2 color-blue" id="star-4"></i>
+                <?php
             }?>
-            <input class="form-control" id="ranking" name="ranking" type="text" value="<?php if(isset($provider_rank)){ echo $date['date']; };?>" required>
+            <br>
+            <input class="form-control" id="ranking" name="ranking" type="hidden" value="<?php if(isset($provider_rank)){ echo $provider_rank; }else{ echo "4";};?>" required>
             <br/>
             <button class="btn btn-primary w-100"><i class="far fa-edit"></i> Comentar</button>
             <br/>
             <br/>
         </form>
-            <a href="<?php echo base_url(); ?>index.php/user/comments"><button class="btn btn-secondary w-100"><i class="fas fa-undo"></i> Volver</button></a>
+            <a href="<?php echo base_url(); ?>index.php/user"><button class="btn btn-secondary w-100"><i class="fas fa-undo"></i> Volver</button></a>
     </div>
 </div>
 

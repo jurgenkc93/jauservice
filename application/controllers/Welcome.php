@@ -357,17 +357,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('provider');
 		$this->load->view('include/footer');
 	}
-
-	public function session(){
-		header('Content-Type: application/json');
-		echo json_encode($_SESSION);
-	}
 	
-	public function hola($phone, $password){
-		$resultado=$this->User_Model->loginUser($phone, $password);
-		header('Content-Type: application/json');
-		echo json_encode($resultado);
-	}
 	private function edit($phone, $password){
 		$this->load->library('encryption');
 		$password = $this->encryption->encrypt($password);

@@ -37,67 +37,6 @@ class User extends CI_Controller {
 			
     }
 
-	public function comments(){
-		if(isset($_SESSION['phone'])){
-
-            $user = $this->User_Model->findByPhone($_SESSION['phone']);
-            $data['date'] = $this->Appointment_Model->findById($user['id']);
-
-            $past_appointments = $this->Appointment_Model->findUserPastDatesFull($user['id']);
-            if($past_appointments != null){
-                $index = 0;
-                foreach($past_appointments AS $appointment){
-                    if($this->Appointment_Model->findUserComentProvider($user['id'], $appointment['id_provider'])){
-                        unset($past_appointments[$index]);
-                    }
-                    $index++;
-                }
-            }
-            
-            $data['comments'] = $past_appointments;
-            /*
-            echo json_encode($data);
-            echo ($past_appointments);
-            */
-            $this->load->view('include/header');
-            $this->load->view('user/comments_to_do', $data);
-            $this->load->view('include/footer');
-        }else{
-            redirect('welcome/login');
-        }
-    }
-
-	public function comment($username){
-		if(isset($_SESSION['phone'])){
-            $user = $this->User_Model->findByPhone($_SESSION['phone']);
-            $provider = $this->User_Model->findByUsername($username);
-
-            $comment = $this->Appointment_Model->findComment($user['id'], $provider['id']);
-
-            $data['provider_phone'] = $provider['phone'];
-            $data['provider_name'] = $provider['name'];
-            $data['provider_surname'] = $provider['surname'];
-            $data['provider_username'] = $provider['username'];
-
-            if($comment != null){
-                $data['user_comment'] = $comment['user_comment'];
-                $data['provider_rank'] = $comment['rank_provider'];
-            }
-
-            /*
-            $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
-            $data['categories'] = $this->Category_Model->findAll();
-            $data['provider'] = $provider;
-            */
-
-            $this->load->view('include/header');
-            $this->load->view('user/comment', $data);
-            $this->load->view('include/footer');
-        }else{
-            redirect('welcome/login');
-        }
-    }
-
 	public function dates(){
 		if(isset($_SESSION['phone'])){
             $user = $this->User_Model->findByPhone($_SESSION['phone']);
@@ -246,20 +185,117 @@ class User extends CI_Controller {
         }
     }
 
+    public function comments(){
+		if(isset($_SESSION['phone'])){
+
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $data['date'] = $this->Appointment_Model->findById($user['id']);
+
+            $past_appointments = $this->Appointment_Model->findUserPastDatesFull($user['id']);
+            if($past_appointments != null){
+                $index = 0;
+                foreach($past_appointments AS $appointment){
+                    if($this->Appointment_Model->findUserComentProvider($user['id'], $appointment['id_provider'])){
+                        unset($past_appointments[$index]);
+                    }
+                    $index++;
+                }
+            }
+            
+            $data['comments'] = $past_appointments;
+            /*
+            echo json_encode($data);
+            echo ($past_appointments);
+            */
+            $this->load->view('include/header');
+            $this->load->view('user/comments_to_do', $data);
+            $this->load->view('include/footer');
+        }else{
+            redirect('welcome/login');
+        }
+    }
+
+	public function comment($username){
+		if(isset($_SESSION['phone'])){
+            $user = $this->User_Model->findByPhone($_SESSION['phone']);
+            $provider = $this->User_Model->findByUsername($username);
+
+            $comment = $this->Appointment_Model->findComment($user['id'], $provider['id']);
+
+            $data['provider_phone'] = $provider['phone'];
+            $data['provider_name'] = $provider['name'];
+            $data['provider_surname'] = $provider['surname'];
+            $data['provider_username'] = $provider['username'];
+
+            if($comment != null){
+                $data['provider_comment'] = $comment['provider_comment'];
+                $data['provider_rank'] = $comment['provider_rank'];
+            }
+
+            /*
+            $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
+            $data['categories'] = $this->Category_Model->findAll();
+            $data['provider'] = $provider;
+            */
+
+            $this->load->view('include/header');
+            $this->load->view('user/comment', $data);
+            $this->load->view('include/footer');
+        }else{
+            redirect('welcome/login');
+        }
+    }
+
     public function makeProviderComment(){
         if(isset($_SESSION['phone'])){
-            if($_POST['userphone'] != '' && $_POST['provider_phone'] != '' && $_POST['phone']){
+            if($_POST['userphone'] != '' && $_POST['provider_phone'] != '' && $_POST['ranking'] != '' && $_POST['comment'] != ''){
                 $user = $this->User_Model->findByPhone($_POST['userphone']);
-                $provider = $this->User_Model->findByPhone($_POST['userphone']);
-                
+                $provider = $this->User_Model->findByPhone($_POST['provider_phone']);
                 $comment = $this->Appointment_Model->findComment($user['id'], $provider['id']);
 
-                $comment['id_provider'] = $provider['rank_provider'];
-                $comment['id_user'] = $user['id'];
-                $comment['rank_provider'] = $_POST['rank_provider'];
-                $comment['provider_comments'] = $_POST['provider_comments'];
+                if($comment == null){
+                    $comment['id_provider'] = $provider['id'];
+                    $comment['id_user'] = $user['id'];
+                    $comment['provider_rank'] = $_POST['ranking'];
+                    $comment['provider_comment'] = $_POST['comment'];
+                    $this->Appointment_Model->makeProviderComment($comment);
+                    $message['message'] = "Comentario realizado, gracias por darnos su opinion";
+                }else{
+                    $comment['id_provider'] = $provider['id'];
+                    $comment['id_user'] = $user['id'];
+                    $comment['provider_rank'] = $_POST['ranking'];
+                    $comment['provider_comment'] = $_POST['comment'];
+                    $this->Appointment_Model->updateProviderComment($comment);
+                    $message['message'] = "Comentario modificado, gracias por darnos de nuevo su opinion";
+                }
 
-                $this->Appointment_Model->makeProviderComment($comment);
+                $appointments = $this->Appointment_Model->findProviderComments($provider['id']);
+                $score = 0;
+                $count = 0;
+                foreach($appointments AS $appointment){
+                    //$score = $score + $appointment['provider_rank'];
+                    $score = $appointment['provider_rank'];
+                    $count++;
+                }
+
+                //$score = $score / $count;
+
+                $this->User_Model->changeProviderScore($provider['id'], $score);
+
+                $data['provider_phone'] = $provider['phone'];
+                $data['provider_name'] = $provider['name'];
+                $data['provider_surname'] = $provider['surname'];
+                $data['provider_username'] = $provider['username'];
+
+                if($comment != null){
+                    $data['provider_comment'] = $comment['provider_comment'];
+                    $data['provider_rank'] = $comment['provider_rank'];
+                }
+
+                $this->load->view('include/header');
+                $this->load->view('messages/primary-message', $message);
+                $this->load->view('user/comment', $data);
+                $this->load->view('include/footer');
                 
             }
         }else{
