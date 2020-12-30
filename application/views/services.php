@@ -3,7 +3,7 @@
 	<div class="container">
 		<?php if($roles){
 			?>
-			<h5>Servicios disponibles en la ciudad de Orizba, Ver.</h5>
+			<h5>Servicios disponibles en la ciudad de Orizaba, Ver.</h5>
 			<br>
 			<br>
 			<table class="table">

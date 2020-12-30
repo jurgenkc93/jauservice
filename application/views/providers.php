@@ -30,7 +30,7 @@
                     <table class="table table-borderless jumbotron">
                         <tbody>
                             <tr>
-                                <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>users/<?php echo $provider['phone']; ?>/profile/<?php echo $provider['image']; ?>" height="200"></th>
+                                <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>users/<?php echo $provider['phone']; ?>/profile/<?php echo $provider['image']; ?>" height="150"></th>
                                 <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
                                 <td>
                                 <?php for($i = 0; $i < $provider['score']; $i++){

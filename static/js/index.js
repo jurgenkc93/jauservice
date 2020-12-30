@@ -19,18 +19,20 @@ $(document).ready(function(){
         var id = this.id;
        $(location).attr("href", url+'service/providers/'+id);
     });
+    
 
     $('.go-services').click(function(){
        $(location).attr("href", url+'welcome/services');
     });
     
     $('.provide-services').click(function(){
-        $(location).attr("href", url+'welcome/provider');
+        $(location).attr("href", url+'welcome/contact');
     });
 
+    /*
     $('.trusted-people').click(function(){
         $(location).attr("href", url+'welcome/trusted');
-    });
+    });*/
     
 });
 

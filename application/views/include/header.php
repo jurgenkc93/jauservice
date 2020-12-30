@@ -7,10 +7,15 @@
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
 
         <meta name="HandheldFriendly" content="True" />
+        <!--
         <meta name="MobileOptimized" content="1024" />
         <meta name="viewport" content="width=1024" />
+        <meta name="viewport" content="width=375">
+        -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta id="meta-keywords" name="keywords" content=""/>
         <meta id="meta-description" name="description" content=""/>
+
 
         <link rel="icon" href="<?php echo base_url();?>static/img/favicon.ico" type="img/x-icon"/>    
         <title>JauService</title>
@@ -28,7 +33,7 @@
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="<?php echo base_url();?>index.php">
-            <img alt="" src="<?php echo base_url();?>static/img/logo.png" width="75" height="50">
+            <img alt="" src="<?php echo base_url();?>static/img/logo.png" width="125" height="75">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,27 +42,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url();?>index.php">Inicio</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url();?>index.php/welcome/contact">Contáctanos</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php/welcome/contact">Contáctanos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url();?>index.php/welcome/who">¿Quienes somos?</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php/welcome/who">¿Quienes somos?</a>
             </li>
             
             <?php if(isset($_SESSION['phone'])){
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url();?>index.php/user/dates">Mis Citas</a>
+                    <a class="nav-link py-3" href="<?php echo base_url();?>index.php/user/dates">Mis Citas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url();?>index.php/user">Cuenta</a>
+                    <a class="nav-link py-3" href="<?php echo base_url();?>index.php/user">Cuenta</a>
                 </li>
                 <?php if($_SESSION['rol'] == 2){
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url();?>index.php/worker">Proveedores</a>
+                        <a class="nav-link py-3" href="<?php echo base_url();?>index.php/worker">Proveedores</a>
                     </li>
                 <?php }
                 ?>
@@ -68,7 +73,7 @@
 
         <?php if(isset($_SESSION['phone'])){ ?>
             <input type="hidden" id="phone" value="<?php echo $_SESSION['phone'];?>"/>
-            <a class="btn btn-light" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/logout">Cerrar Sesión</a>
+            <a class="btn btn-light py-3" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/logout">Cerrar Sesión</a>
             <!--
             <div class="nav-item dropdown px-5">
                 <a class="nav-link dropdown-toggle far fa-user fa-lg" href="#" id="navbarDropdown" style="color: grey;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +87,7 @@
             -->
             <?php } else {
                 ?>
-            <a class="nav-item nav-link" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/user"> Iniciar Sesión</a>
+            <a class="nav-item nav-link py-3" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/user"> Iniciar Sesión</a>
             <?php }
         ?>
 

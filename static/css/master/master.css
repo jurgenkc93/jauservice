@@ -2,6 +2,10 @@
 	font-family: "LakersTextured";
 	src: url("LakersTextured.otf") format("opentype");
 }
+@font-face{
+	font-family: "RobotoRegular";
+	src: url("roboto/Roboto-Regular.ttf") format("opentype");
+}
 div{
 	word-wrap: break-word;
 }
@@ -10,10 +14,19 @@ div{
 	font-weight: lighter;
 	font-style: normal;
 }
+
 .jauservice-text{
 	font-family: 'LakersTextured';
 	font-weight: bold;
 	font-style: normal;
+}
+
+a, p, label, i{
+	font-family: 'RobotoRegular';
+	font-size: 18px;
+}
+h1, h2, h3, h4, h5{
+	font-family: 'RobotoRegular';
 }
 
 .background-white{
@@ -132,3 +145,46 @@ footer{
 .border-table-dates-botton{
 	border-bottom: 1px solid rgb(255, 255, 255);
 }
+/*
+.button{
+	position: relative;
+	border: none;
+	font-size: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: rgb(85, 129, 216);
+	text-align: center;
+	-webkit-transition-duration: 0.5s; /* Safari *//*
+	transition-duration: 0.5s;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+}
+*/
+
+.button:active{
+	background: rgb(85, 129, 216);
+	color: rgb(255, 255, 255);
+	transition: all 0.4s
+}
+.button:active:after{
+	background: rgb(85, 129, 216);
+	
+}
+/*
+.button:active{
+	content: "";
+	background: #00ff00;
+	display: block;
+	position: absolute;
+	opacity: 0;
+	transition: all 0.8s
+}
+  
+.button:active:after{
+	padding: 0;
+	margin: 0;
+	opacity: 1;
+	transition: 0s
+}
+*/

@@ -231,13 +231,7 @@ class User extends CI_Controller {
                 $data['provider_comment'] = $comment['provider_comment'];
                 $data['provider_rank'] = $comment['provider_rank'];
             }
-
-            /*
-            $provider['category'] = $this->Category_Model->findServicesByPhone($_SESSION['phone']);
-            $data['categories'] = $this->Category_Model->findAll();
-            $data['provider'] = $provider;
-            */
-
+            
             $this->load->view('include/header');
             $this->load->view('user/comment', $data);
             $this->load->view('include/footer');

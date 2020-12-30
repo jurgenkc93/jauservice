@@ -41,7 +41,14 @@ class Provider extends CI_Controller {
 
 				unset($data['images'][0]);
 				unset($data['images'][1]);
-				
+				$data['image'] = $provider['image'];
+				/*
+				header("Access-Control-Allow-Headers: *");
+				header('Access-Control-Allow-Origin: *');
+				header("Access-Control-Allow-Methods: GET");
+				header('Content-Type: application/json');
+				echo json_encode($data);
+				*/
 				$this->load->view('include/header');
 				$this->load->view('worker/provider', $data);
 				$this->load->view('include/footer');

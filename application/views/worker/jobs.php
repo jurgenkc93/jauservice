@@ -12,12 +12,12 @@
     <?php echo form_open_multipart('provider/uploadProviderJob');?>
         <div class="form-group">
             <br>
-            <label for="exampleFormControlFile1">Suba una foto</label>
+            <label for="exampleFormControlFile1">Suba una foto de trabajos realizados</label>
             <br>
             <input type="file"  id="picture" name="picture" size="20" onchange="readURL(this);" >
             <input type="hidden" name="phone" value="<?php echo $phone; ?>" >
             <br>
-            <img alt="" id="profpic" src="<?php echo base_url();?>/users/<?php echo $phone; ?>/profile/profile-picture.jpg" height="350" width="350" class="center rounded">
+            <img alt="" id="profpic" src="" height="350" width="350" class="center rounded">
                     
         </div>
         
