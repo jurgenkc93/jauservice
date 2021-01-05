@@ -42,13 +42,6 @@ class Provider extends CI_Controller {
 				unset($data['images'][0]);
 				unset($data['images'][1]);
 				$data['image'] = $provider['image'];
-				/*
-				header("Access-Control-Allow-Headers: *");
-				header('Access-Control-Allow-Origin: *');
-				header("Access-Control-Allow-Methods: GET");
-				header('Content-Type: application/json');
-				echo json_encode($data);
-				*/
 				$this->load->view('include/header');
 				$this->load->view('worker/provider', $data);
 				$this->load->view('include/footer');
@@ -75,7 +68,6 @@ class Provider extends CI_Controller {
 	}
 
 	public function date(){
-		//$now = time();
 		$date_started = date('Y-m-d H:i:s', time());
 		$next_renewed = date('Y-m-d H:i:s', time()+2629800);
 		$_POST['phone'] = "2721549510";
@@ -88,14 +80,7 @@ class Provider extends CI_Controller {
 		if(isset($_SESSION['phone'])){
 			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
 				if($_POST['name'] != '' && $_POST['surname'] != '' && $_POST['username'] != '' && $_POST['phone'] != '' && $_POST['password'] != '' && $_POST['phone'] != ''){
-					/*
-					header("Access-Control-Allow-Headers: *");
-					header('Access-Control-Allow-Origin: *');
-					header("Access-Control-Allow-Methods: GET");
-					header('Content-Type: application/json');
-					echo json_encode($_POST['phone']);
-					*/
-					
+
 					$provider = $this->User_Model->findByPhone($_POST['phone']);
 					$worker = $this->User_Model->findByPhone($_POST['user-phone']);
 
@@ -167,7 +152,6 @@ class Provider extends CI_Controller {
 							$this->load->view('worker/form');
 							$this->load->view('include/footer');
 						}
-
 					}else{
 						if($provider['id_role'] == 3){
 							$provider['id_role'] = 4;
@@ -263,9 +247,6 @@ class Provider extends CI_Controller {
 						$this->load->view('messages/warning-message', $data);
 						$this->load->view('worker/picture', $data);
 						$this->load->view('include/footer');
-						
-						//echo json_encode($error);
-						//$this->load->view('upload_form', $error);
 					}else{
 						$data = array('upload_data' => $this->upload->data());
 						$data['message'] = 'Foto actualizada';
@@ -283,11 +264,7 @@ class Provider extends CI_Controller {
 						$this->load->view('messages/primary-message', $data);
 						$this->load->view('worker/picture', $data);
 						$this->load->view('include/footer');
-
-						//echo json_encode($data);
-						//$this->load->view('upload_success', $data);
 					}
-					//delete_files($config['upload_path'].'/'.$_POST['phone'].'.jpg');
 				}else{
 					$data['message'] = 'Existieron campos faltantes.';
 					$this->load->view('include/header');
@@ -363,22 +340,14 @@ class Provider extends CI_Controller {
 						$this->load->view('messages/warning-message', $data);
 						$this->load->view('worker/jobs', $data);
 						$this->load->view('include/footer');
-						
-						//echo json_encode($error);
-						//$this->load->view('upload_form', $error);
 					}else{
-						//$data = array('upload_data' => $this->upload->data());
 						$data['message'] = 'Foto agregada';
 						$data['phone'] = $_POST['phone'];
 						$this->load->view('include/header');
 						$this->load->view('messages/primary-message', $data);
 						$this->load->view('worker/jobs', $data);
 						$this->load->view('include/footer');
-						
-						//echo json_encode($data);
-						//$this->load->view('upload_success', $data);
 					}
-					//delete_files($config['upload_path'].'/'.$_POST['phone'].'.jpg');
 				}else{
 					$data['message'] = 'Existieron campos faltantes.';
 					$this->load->view('include/header');

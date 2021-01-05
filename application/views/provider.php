@@ -13,9 +13,7 @@
         <br>
         <div class="row">
             <div class="col-md-6">
-                <a href="<?php echo base_url();?>/users/<?php echo $provider['phone'];?>/profile/<?php echo $provider['image']; ?>">
-                    <img alt="" class="center rounded" src="<?php echo base_url();?>/users/<?php echo $provider['phone'];?>/profile/<?php echo $provider['image']; ?>" height="250" width="250">
-                </a>
+                <img alt="" class="center rounded" src="<?php echo base_url();?>/users/<?php echo $provider['phone'];?>/profile/<?php echo $provider['image']; ?>" height="250" width="250">
             </div>
             <div class="col-md-6 jumbotron my-3">
                 <h5 class="times-font color-blue-text">Acerda de mi:</h5>
