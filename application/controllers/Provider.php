@@ -394,5 +394,4 @@ class Provider extends CI_Controller {
         }
 	}
 
-	
 }
