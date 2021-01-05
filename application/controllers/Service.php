@@ -29,7 +29,9 @@ class Service extends CI_Controller {
 	}
 	
 	public function all(){
-		$data['roles'] = $this->User_Model->findNearServices($_SESSION['longitude'], $_SESSION['latitude']);
+		//$data['roles'] = $this->User_Model->findNearServices($_SESSION['longitude'], $_SESSION['latitude']);
+		$data['roles'] = $this->User_Model->findAllServices();
+		
 		$this->load->view('include/header');
 		$this->load->view('all', $data);
 		$this->load->view('include/footer');

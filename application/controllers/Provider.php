@@ -36,7 +36,7 @@ class Provider extends CI_Controller {
 				$data['categories'] = $this->Category_Model->findAll();
 				$data['provider'] = $provider;
 
-				$directorio = 'users/'.$provider['phone'].'/jobs/';
+				$directorio = 'users/'.$_POST['phone'].'/jobs/';
 				$data['images'] = scandir($directorio);
 
 				unset($data['images'][0]);
@@ -87,7 +87,14 @@ class Provider extends CI_Controller {
 		$this->load->helper("file");
 		if(isset($_SESSION['phone'])){
 			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
-				if($_POST['name'] != '' && $_POST['surname'] != '' && $_POST['username'] != '' && $_POST['phone'] != '' && $_POST['password'] != '' && $_POST['user-phone'] != ''){
+				if($_POST['name'] != '' && $_POST['surname'] != '' && $_POST['username'] != '' && $_POST['phone'] != '' && $_POST['password'] != '' && $_POST['phone'] != ''){
+					/*
+					header("Access-Control-Allow-Headers: *");
+					header('Access-Control-Allow-Origin: *');
+					header("Access-Control-Allow-Methods: GET");
+					header('Content-Type: application/json');
+					echo json_encode($_POST['phone']);
+					*/
 					
 					$provider = $this->User_Model->findByPhone($_POST['phone']);
 					$worker = $this->User_Model->findByPhone($_POST['user-phone']);
@@ -126,11 +133,8 @@ class Provider extends CI_Controller {
 								$this->load->view('messages/warning-message', $data);
 								$this->load->view('worker/form');
 								$this->load->view('include/footer');
-								
-								//echo json_encode($error);
-								//$this->load->view('upload_form', $error);
 							}else{
-								$directorio = 'users/'.$provider['phone'].'/profile/';
+								$directorio = 'users/'.$_POST['phone'].'/profile/';
 								$data['images'] = scandir($directorio);
 								$image = $data['images'][2];
 
@@ -155,9 +159,6 @@ class Provider extends CI_Controller {
 								$this->load->view('messages/primary-message', $data);
 								$this->load->view('user/account');
 								$this->load->view('include/footer');
-								
-								//echo json_encode($data);
-								//$this->load->view('upload_success', $data);
 							}
 						}else{
 							$data['message'] = 'Nombre de usuario existente.';
@@ -195,7 +196,7 @@ class Provider extends CI_Controller {
 							$this->load->view('include/footer');
 						}
 					}
-
+					
 				}else{
 					$data['message'] = 'Existieron campos faltantes.';
 						$this->load->view('include/header');
@@ -232,7 +233,7 @@ class Provider extends CI_Controller {
 		$this->load->helper("file");
 		if(isset($_SESSION['phone'])){
 			if($_SESSION['rol'] == 2 || $_SESSION['rol'] == 1){
-				if($_POST['phone'] != ''){
+				if($_POST['phone'] != '' && $_POST['picture'] != ''){
 					
 					$provider = $this->User_Model->findByPhone($_POST['phone']);
 
@@ -270,7 +271,7 @@ class Provider extends CI_Controller {
 						$data['message'] = 'Foto actualizada';
 						$data['phone'] = $_POST['phone'];
 
-						$directorio = 'users/'.$provider['phone'].'/profile/';
+						$directorio = 'users/'.$_POST['phone'].'/profile/';
 						$data['images'] = scandir($directorio);
 						$image = $data['images'][2];
 
@@ -348,7 +349,7 @@ class Provider extends CI_Controller {
 						mkdir('./users/'.$_POST['phone'].'/jobs', 0777, TRUE);
 					}
 					
-					$directorio = 'users/'.$provider['phone'].'/jobs/';
+					$directorio = 'users/'.$_POST['phone'].'/jobs/';
 					$data['images'] = scandir($directorio);
 
 					unset($data['images'][0]);

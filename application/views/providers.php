@@ -14,7 +14,9 @@
 
 <div class="container">
 
+<!--
     <img alt="" class="center rounded" src="<?php echo base_url();?>static/img/logo.png" width="250" height="150">
+ -->
     <img alt="" class="center rounded w-100" src="<?php echo base_url();?>static/img/home/pleca.png" height="100">
     <?php if($category){
         ?>
@@ -31,22 +33,27 @@
                         <tbody>
                             <tr>
                                 <td rowspan="2"><img alt="" class="center rounded" src="<?php echo base_url();?>users/<?php echo $provider['phone']; ?>/profile/<?php echo $provider['image']; ?>" height="150"></th>
-                                <td><h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5></td>
                                 <td>
-                                <?php for($i = 0; $i < $provider['score']; $i++){
-                                    ?>
-                                    <i class="fas fa-star color-blue">
-                                    <?php
-                                }
-                                if($i <= 4){
-                                    for($j = $i; $j <= 4; $j++){
+                                    <?php for($i = 0; $i < $provider['score']; $i++){
                                         ?>
-                                        <i class="far fa-star color-blue"></i>
+                                        <i class="fas fa-star color-blue">
                                         <?php
                                     }
-                                }
-                                ?>
-                                </tr>
+                                    if($i <= 4){
+                                        for($j = $i; $j <= 4; $j++){
+                                            ?>
+                                            <i class="far fa-star color-blue"></i>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h5 class=""><?php echo $provider['name']; ?> <?php echo $provider['surname']; ?></h5>
+                                </td>
+                            </tr>
                             <tr>
                                 <td colspan="2"><p class="times-font"><?php echo $provider['description']; ?></p></td>
                             </tr>
