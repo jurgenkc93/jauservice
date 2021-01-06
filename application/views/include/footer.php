@@ -42,7 +42,7 @@
             </li>
             <li>
               <h5 class="color-white">Teléfono y whatsapp</h5>
-              <h5 style="color:white;"><img src="<?php echo base_url();?>static/icons/whatsapp.png" height="35px" width="35px" style="margin-right: 5%;">   272 154 9510</h5>
+              <h5 style="color:white;"><i class="fab fa-whatsapp whatsapp-icon fa-lg"></i>  272 154 9510</h5>
             </li>
             <li>
               <a href="#"></a>
@@ -98,10 +98,10 @@
             <li>
             </li>
             <li>
-            <a href="#" id="profilePage" style="color:white;"> <h5><img src="<?php echo base_url();?>static/icons/fb.png" alt="" height="50px" width="50px">Perfil</h5> </a>
+            <a href="#" id="profilePage" style="color:white;"> <h5><i class="fab fa-facebook facebook-icon fa-lg"></i>  Perfil</h5> </a>
             </li>
             <li>
-            <a href="#" id="fbPage" style="color:white;"> <h5><img src="<?php echo base_url();?>static/icons/fb.png" alt="" height="50px" width="50px">Página</h5> </a>
+            <a href="#" id="fbPage" style="color:white;"> <h5><i class="fab fa-facebook facebook-icon fa-lg"></i>  Página</h5> </a>
             </li>
           </ul>
 
@@ -153,10 +153,7 @@
   <script src="https://kit.fontawesome.com/60057f1552.js" crossorigin="anonymous"></script>
 
 
-  <script src="<?php echo base_url();?>static/assets/bootstrap/js/bootstrap.js" type="text/javascript"></script>
-  
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+  <script src="<?php echo base_url();?>static/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
 </body>
 </html>

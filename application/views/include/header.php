@@ -7,33 +7,32 @@
         <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE"/>
 
         <meta name="HandheldFriendly" content="True" />
-        <!--
+        
         <meta name="MobileOptimized" content="1024" />
         <meta name="viewport" content="width=1024" />
         <meta name="viewport" content="width=375">
-        -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta id="meta-keywords" name="keywords" content=""/>
         <meta id="meta-description" name="description" content=""/>
 
-
         <link rel="icon" href="<?php echo base_url();?>static/img/favicon.ico" type="img/x-icon"/>    
+        <link rel="stylesheet" href="<?php echo base_url();?>static/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>static/css/master/master.css">
+        <script src="<?php echo base_url();?>static/assets/js/jquery-3-4.js" type="text/javascript"></script>
+
         <title>JauService</title>
     </head>
 	<!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     -->
-        <link rel="stylesheet" href="<?php echo base_url();?>static/assets/bootstrap/css/bootstrap.css">
     
-    <link rel="stylesheet" href="<?php echo base_url();?>static/css/master/master.css">
-    
-    <script src="<?php echo base_url();?>static/assets/js/jquery-3-4.js" type="text/javascript"></script>
     
 <body>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="<?php echo base_url();?>index.php/service/all">
-            <img alt="" src="<?php echo base_url();?>static/img/logo.png" width="125" height="75">
+            <img alt="" src="<?php echo base_url();?>static/img/logo.webp" width="125" height="75">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

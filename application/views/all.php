@@ -22,7 +22,7 @@
 						<?php
 						foreach($roles as $role){
 						?>
-						<tr id="<?php echo $role['keycode']; ?>" class="role button py-3">
+						<tr id="<?php echo $role['keycode']; ?>" class="role button py-4 hover-pointer">
 							<td><i class="<?php echo $role['image']; ?> fa-2x color-black" style="margin-left:50%;"></i></td>
 							<td><h4 class="color-blue ml-5"><?php echo $role['name']; ?></h4></td>
 						</tr>
