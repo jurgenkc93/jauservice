@@ -9,10 +9,10 @@ $(document).ready(function(){
 	$('#terms-warning').hide();
 
 	/*
-    var url = 'http://10.0.0.2/jauservice/index.php/';
-    var url = 'https://www.jauservice.com/index.php/';
+    var url = 'http://10.0.0.2/jauservice/';
+    var url = 'https://www.jauservice.com/';
     */
-   var url = 'http://localhost/jauservice/index.php/';
+   var url = document.getElementById('base-url').value;
 	
 	$('#sign').click(function(){
 

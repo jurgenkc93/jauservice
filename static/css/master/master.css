@@ -198,6 +198,19 @@ footer{
 .facebook-icon{
 	color: rgb(59, 89, 152);
 }
+
+div.scrollmenu {
+	overflow: auto;
+}
+
+div.scrollmenu a {
+	display: inline-block;
+}
+
+div.scrollmenu a:hover {
+	background-color: #777;
+}
+
 /*
 .button:active{
 	content: "";

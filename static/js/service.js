@@ -1,12 +1,12 @@
 /*
 var url = 'http://localhost/jauservice/';
 */
-var url = 'https://www.jauservice.com/';
+var url = document.getElementById('base-url').value;
 
 function findCategory(id){
-	$(location).attr("href", url+'index.php/service/providers/'+id);
+	$(location).attr("href", url+'service/providers/'+id);
 }
 
 function findProvider(id){
-	$(location).attr("href", url+'index.php/service/provider/'+id);
+	$(location).attr("href", url+'service/provider/'+id);
 }

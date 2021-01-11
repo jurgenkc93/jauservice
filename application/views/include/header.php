@@ -26,12 +26,10 @@
 	<!--
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     -->
-    
-    
 <body>
-    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="<?php echo base_url();?>index.php/service/all">
+        <input type="hidden" id="base-url" value="<?php echo base_url();?>"/>
+        <a class="navbar-brand" href="<?php echo base_url();?>service/all">
             <img alt="" src="<?php echo base_url();?>static/img/logo.webp" width="125" height="75">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,38 +39,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php">Inicio</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php/welcome/contact">Contáctanos</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>welcome/contact">Contáctanos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link py-3 button" href="<?php echo base_url();?>index.php/welcome/who">¿Quienes somos?</a>
+                <a class="nav-link py-3 button" href="<?php echo base_url();?>welcome/who">¿Quienes somos?</a>
             </li>
             
             <?php if(isset($_SESSION['phone'])){
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link py-3" href="<?php echo base_url();?>index.php/user/dates">Mis Citas</a>
+                    <a class="nav-link py-3" href="<?php echo base_url();?>user/dates">Mis Citas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link py-3" href="<?php echo base_url();?>index.php/user">Cuenta</a>
+                    <a class="nav-link py-3" href="<?php echo base_url();?>user">Cuenta</a>
                 </li>
                 <?php if($_SESSION['rol'] == 2){
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link py-3" href="<?php echo base_url();?>index.php/worker">Proveedores</a>
+                        <a class="nav-link py-3" href="<?php echo base_url();?>worker">Proveedores</a>
                     </li>
                 <?php }
                 ?>
-            <?php 
+            <?php
                 }
                 ?>
         </ul>
 
         <?php if(isset($_SESSION['phone'])){ ?>
             <input type="hidden" id="phone" value="<?php echo $_SESSION['phone'];?>"/>
-            <a class="btn btn-light py-3" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/logout">Cerrar Sesión</a>
+            <a class="btn btn-light py-3" style="color:grey;" href="<?php echo base_url();?>welcome/logout">Cerrar Sesión</a>
             <!--
             <div class="nav-item dropdown px-5">
                 <a class="nav-link dropdown-toggle far fa-user fa-lg" href="#" id="navbarDropdown" style="color: grey;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -86,7 +84,7 @@
             -->
             <?php } else {
                 ?>
-            <a class="nav-item nav-link py-3" style="color:grey;" href="<?php echo base_url();?>index.php/welcome/user"> Iniciar Sesión</a>
+            <a class="nav-item nav-link py-3" style="color:grey;" href="<?php echo base_url();?>welcome/user"> Iniciar Sesión</a>
             <?php }
         ?>
 

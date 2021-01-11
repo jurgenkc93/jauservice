@@ -137,7 +137,7 @@
 
       <div class="row">
         <div class="col-md-6 mx-auto footer-copyright text-center py-3">
-          <a href="<?php echo base_url();?>index.php/welcome/privacy" style="color:white;"> Acuerdo de privacidad</a>
+          <a href="<?php echo base_url();?>welcome/privacy" style="color:white;"> Acuerdo de privacidad</a>
         </div>
 
         <div class="col-md-6 mx-auto footer-copyright text-center py-3">

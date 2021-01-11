@@ -64,7 +64,6 @@ $(document).ready(function(){
           Body : body
         }
       ).then(
-        console.log("Va"),
         //message => alert(message),
         //$('#loading').show(),
         $('#send').show(),

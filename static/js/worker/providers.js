@@ -1,8 +1,8 @@
 $(document).ready(function(){
     /*
-    var url = "http://localhost/jauservice/index.php/";
+    var url = "http://localhost/jauservice/";
     */
-   var url = "http://www.jauservice.com/index.php/";
+   var url = "http://www.jauservice.com/";
 
     $('#table').DataTable();
 

@@ -1,9 +1,9 @@
 
 /*
-var url = "http://localhost/kecomer-interfaz/index.php/user/";
-var url = "http://localhost/jauservice/index.php/user/";
+var url = "http://localhost/kecomer-interfaz/user/";
+var url = "http://localhost/jauservice/user/";
 */
-var url = 'https://www.jauservice.com/index.php/';
+var url = document.getElementById('base-url').value;
 
 function createUser(){
     url = url+"create";

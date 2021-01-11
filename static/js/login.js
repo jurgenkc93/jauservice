@@ -5,10 +5,10 @@ $(document).ready(function(){
     $('#phone-warning').hide();
 
     /*
-    var url = 'http://10.0.0.2/jauservice/index.php/';
-    var url = 'http://localhost/jauservice/index.php/';
+    var url = 'http://10.0.0.2/jauservice/';
+    var url = 'http://localhost/jauservice/';
     */
-   var url = 'https://www.jauservice.com/index.php/';
+   var url = document.getElementById('base-url').value;
 
 
    $('#find-phone').click(function(){
