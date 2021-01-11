@@ -53,7 +53,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
-			<h5 class="mx-5 hover-pointer go-services">Encuentra personal para resolver los problemas de casa</h5>
+			<h5 class="mx-5 hover-pointer go-services">Encuentra personal</h5>
 			<div class="background-white rounded mx-5 border border-primary hover-pointer go-services">
 				<img alt="" class="center img-responsive" src="<?php echo base_url();?>static/img/home/solution.webp" height="200">
 			</div>

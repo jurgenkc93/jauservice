@@ -12,6 +12,10 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /jauservice/index.php [L]
 
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://www.jauservice.com/$1 [R=301,L,NE]
+Header always set Content-Security-Policy "upgrade-insecure-requests;"
+
 </IfModule>
 
 #RewriteRule (.*) http://www.jauservice.com/$1 [R=301,L,QSA]
