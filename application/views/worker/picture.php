@@ -9,7 +9,8 @@
 <br>
 <br>
 <div class="container card">
-    <?php echo form_open_multipart('provider/uploadProviderPicture');?>
+    <form method="post" action="<?=base_url('provider/uploadProviderPicture')?>" enctype="multipart/form-data">
+    <?php //echo form_open_multipart('provider/uploadProviderPicture');?>
         <div class="form-group">
             <br>
             <label for="exampleFormControlFile1">Suba una foto</label>
