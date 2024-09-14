@@ -25,7 +25,7 @@ date_default_timezone_set('America/Mexico_City');
 $config['base_url'] = 'http://10.0.0.2/jauservice/';
 $config['base_url'] = 'https://www.jauservice.com/';
 */
-$config['base_url'] = 'http://localhost/jauservice/';
+$config['base_url'] = 'http://192.168.0.195/jauservice/';
 
 /*
 |--------------------------------------------------------------------------

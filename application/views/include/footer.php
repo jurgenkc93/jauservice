@@ -141,8 +141,8 @@
         </div>
 
         <div class="col-md-6 mx-auto footer-copyright text-center py-3">
-          © 2019 Copyright:
-          <a href="<?php echo base_url();?>" style="color:white;"> https://www.jauservice.com</a>
+          © 2024 Copyright:
+          <a href="<?php echo base_url();?>" style="color:white;">https://www.jauservice.com</a>
         </div>
       </div>
     </div>
@@ -153,7 +153,7 @@
   <script src="https://kit.fontawesome.com/60057f1552.js" crossorigin="anonymous"></script>
 
 
-  <script src="<?php echo base_url();?>static/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url('static/assets/bootstrap/js/bootstrap.min.js?v=') . time();?>" type="text/javascript"></script>
 
 </body>
 </html>

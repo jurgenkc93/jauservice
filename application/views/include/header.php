@@ -11,6 +11,13 @@
         <meta name="MobileOptimized" content="1024" />
         <meta name="viewport" content="width=1024" />
         <meta name="viewport" content="width=375">
+
+        
+        <meta property="og:title" content="<?php if(isset($title)) { echo $title; } else { echo getenv('APP_TITLE'); } ?>">
+        <meta property="og:description" content="Empresa de marketing digital.">
+        <meta property="og:image" content="<?php if(isset($image)) { echo base_url($image); } else { echo base_url('public/img/main/moka_estudio_creativo_1920.webp'); } ?>">
+        <meta property="og:url" content="<?php echo base_url(); ?>">
+        <meta property="og:type" content="website">
         
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta id="meta-keywords" name="keywords" content=""/>
@@ -18,7 +25,7 @@
 
         <link rel="icon" href="<?php echo base_url();?>static/img/favicon.ico" type="img/x-icon"/>    
         <link rel="stylesheet" href="<?php echo base_url();?>static/assets/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>static/css/master/master.css">
+        <link rel="stylesheet" href="<?php echo base_url('static/css/master.css?v=') . time();?>">
         <script src="<?php echo base_url();?>static/assets/js/jquery-3-4.js" type="text/javascript"></script>
 
         <title>JauService</title>
@@ -29,11 +36,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <input type="hidden" id="base-url" value="<?php echo base_url();?>"/>
-        <a class="navbar-brand" href="<?php echo base_url();?>service/all">
+        <a class="navbar-brand" href="<?php echo base_url();?>">
             <img alt="" src="<?php echo base_url();?>static/img/logo.webp" width="125" height="75">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

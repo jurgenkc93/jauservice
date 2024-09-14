@@ -80,7 +80,7 @@ $query_builder = TRUE;
 */
 
 $db['default'] = array(
-	'hostname' => 'jauservice.com',
+	'hostname' => 'cerveceriakaiser.com',
 	'username' => 'u598368954_main',
 	'password' => '@RH>#0=DXO&RGScFLk4&#R',
 	'database' => 'u598368954_main',
